@@ -1,0 +1,14 @@
+# For yay gpgkey
+gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv  <key>
+
+# SDDM theme
+git clone https://github.com/JaKooLit/simple-sddm.git ~/simple-sddm
+sudo mv ~/simple-sddm /usr/share/sddm/themes/
+
+# Don't forgot
+mounting device at /etc/fstab
+UUID=<uuid>	/media/ssd2	ext4	defaults	0	0
+
+# Themes
+https://github.com/vinceliuice/Fluent-gtk-theme
+https://github.com/dracula/dracula-theme
