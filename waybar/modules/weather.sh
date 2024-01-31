@@ -77,3 +77,4 @@ esac
 #echo $temp $condition
 
 echo -e "{\"text\":\""$temperature $condition"\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
+
