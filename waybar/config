@@ -17,7 +17,6 @@
 
     "modules-left": [
         "hyprland/workspaces",
-        "temperature",
         //"idle_inhibitor",
         //"mpd",
         "custom/media"
@@ -28,7 +27,7 @@
     ],
     "modules-right": [
         "backlight",
-        "custom/storage",
+        "temperature",
         "memory",
         "cpu",
 	"network",
