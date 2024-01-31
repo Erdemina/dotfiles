@@ -1,5 +1,5 @@
 sudo pacman -S waybar otf-font-awesome ttf-jetbrains-mono alacritty rofi nautilus hyprpaper git
-sudo pacman -S pavucontrol unzip
+sudo pacman -S pavucontrol unzip hyprshot
 pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 yay -S nwg-look-bin
 yay -S visual-studio-code-bin
