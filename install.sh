@@ -1,4 +1,6 @@
-sudo pacman -S waybar otf-font-awesome ttf-jetbrains-mono alacritty rofi nautilus hyprpaper git
+sudo pacman -R pulse-native-provider
+
+sudo pacman -S pulseaudio vlc waybar otf-font-awesome ttf-jetbrains-mono alacritty rofi nautilus hyprpaper git
 sudo pacman -S pavucontrol unzip hyprshot brightnessctl mpd mpc xsensors
 pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 yay -S nwg-look-bin
