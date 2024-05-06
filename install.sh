@@ -4,6 +4,8 @@ yay -S rofi otf-font-awesome ttf-jetbrains-mono  hyper  zsh  bluez bluez-utils b
 cp -r rofi/ hypr/ waybar/ alacritty/ ~/.config/
 git clone https://github.com/vinceliuice/Fluent-gtk-theme.git && ./Fluent-gtk-theme/install.sh
 rm -rf ./Fluent-gtk-theme
-git clone https://aur.archlinux.org/sddm-theme-tokyo-night.git && cd sddm-theme-tokyo-night && makepkg -Ccsi
-cd ../ && rm -rf sddm-theme-tokyo-night
+sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme
+sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
+echo "[Theme]
+Current=sddm-astronaut-theme" | sudo tee /etc/sddm.conf
 sudo cp -r ./etc/* /etc/ 
