@@ -104,7 +104,7 @@ case "${1:-}" in
     pick)
         choice="$(for d in "${WALL_DIRS[@]}"; do [ -d "$d" ] && find "$d" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) ; done \
             | sort | while read -r f; do printf '%s\0icon\x1f%s\n' "$f" "$f"; done \
-            | rofi -dmenu -i -p "Duvar kağıdı" -show-icons)"
+            | rofi -dmenu -i -p "Wallpaper" -show-icons)"
         [ -n "$choice" ] && exec "$0" set "$choice"
         ;;
     *) echo "kullanım: $0 current|apply|set <dosya>|pick"; exit 1 ;;

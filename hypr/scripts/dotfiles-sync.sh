@@ -16,12 +16,12 @@ mkdir -p "$REPO/xdg-desktop-portal"; cp "$C/xdg-desktop-portal/hyprland-portals.
 
 cd "$REPO" || exit 1
 if git diff --quiet && git diff --cached --quiet && [ -z "$(git status --porcelain)" ]; then
-    msg="Değişiklik yok"; echo "$msg"
+    msg="No changes"; echo "$msg"
 else
     git add -A
     git commit -q -m "Sync configs from ~/.config ($(date +%Y-%m-%d\ %H:%M))"
     msg="Commit: $(git log -1 --format=%h)"
-    if git push -q origin main 2>/dev/null; then msg="$msg — push edildi"; else msg="$msg — push edilemedi (GitHub SSH anahtarı?)"; fi
+    if git push -q origin main 2>/dev/null; then msg="$msg — pushed"; else msg="$msg — push failed (GitHub SSH key?)"; fi
     echo "$msg"
 fi
 command -v notify-send >/dev/null && notify-send -a "Dotfiles" "$msg"

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # rofi güç menüsü
-choice="$(printf '󰌾  Kilitle\n󰗽  Oturumu kapat\n󰒲  Uyku\n󰜉  Yeniden başlat\n󰐥  Kapat' | rofi -dmenu -i -p 'Güç' -theme-str 'listview { lines: 5; } window { width: 300px; }')"
+choice="$(printf '󰌾  Lock\n󰗽  Log out\n󰒲  Suspend\n󰜉  Reboot\n󰐥  Shut down' | rofi -dmenu -i -p 'Power' -theme-str 'listview { lines: 5; } window { width: 300px; }')"
 case "$choice" in
-    *Kilitle*)          hyprlock ;;
-    *"Oturumu kapat"*)  hyprctl dispatch 'hl.dsp.exit()' ;;
-    *Uyku*)             systemctl suspend ;;
-    *"Yeniden başlat"*) systemctl reboot ;;
-    *Kapat*)            systemctl poweroff ;;
+    *Lock*)      hyprlock ;;
+    *"Log out"*) hyprctl dispatch 'hl.dsp.exit()' ;;
+    *Suspend*)   systemctl suspend ;;
+    *Reboot*)    systemctl reboot ;;
+    *"Shut down"*) systemctl poweroff ;;
 esac

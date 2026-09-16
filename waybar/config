@@ -59,7 +59,7 @@
     },
 
     "temperature": {
-        "tooltip-format": "CPU sıcaklığı: {temperatureC}°C\nTıkla: xsensors",
+        "tooltip-format": "CPU temperature: {temperatureC}°C\nClick: xsensors",
         // "thermal-zone": 1,
         "interval": 4,
         //"hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
@@ -74,14 +74,14 @@
     },
 
     "memory": {
-        "tooltip-format": "Bellek: {used:0.1f} / {total:0.1f} GB (%{percentage})\nSwap: {swapUsed:0.1f} / {swapTotal:0.1f} GB\nTıkla: btop",
+        "tooltip-format": "Memory: {used:0.1f} / {total:0.1f} GB (%{percentage})\nSwap: {swapUsed:0.1f} / {swapTotal:0.1f} GB\nClick: btop",
         "interval": 10,
         "format": "☰ {used:0.2f} / {total:0.0f} GB",
         "on-click": "ghostty -e btop"
     },
 
     "battery": {
-        "tooltip-format": "Pil: %{capacity} — {timeTo}\nGüç: {power}W\nTıkla: güç profili (performans / dengeli / tasarruf)",
+        "tooltip-format": "Battery: %{capacity} — {timeTo}\nPower draw: {power}W\nClick: power profile (performance / balanced / power saver)",
         "on-click": "~/.config/hypr/scripts/powerprofile.sh",
         "interval": 2,
         "states": {
@@ -109,14 +109,15 @@
         "format-disconnected": "",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
-        "tooltip-format": " {bandwidthUpBits}  {bandwidthDownBits}\n{ifname}\n{ipaddr}/{cidr}\n",
-        "tooltip-format-wifi": " {essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format": "Network: {ifname}\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}\nClick: copy IP",
+        "tooltip-format-wifi": "Wi-Fi: {essid} ({frequency} MHz)\nSignal: {signaldBm} dBm (%{signalStrength})\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}\nClick: copy IP",
+        "tooltip-format-disconnected": "No network connection",
 	"min-length": 17,
 	"max-length": 17
     },
 
     "backlight": {
-        "tooltip-format": "Ekran parlaklığı: %{percent}\nKaydır: ±5%",
+        "tooltip-format": "Screen brightness: %{percent}\nScroll: ±5%",
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
         "format-alt": "{percent}% {icon}",
@@ -136,10 +137,9 @@
         "tooltip": "true"
     },
     "custom/weather": {
-        "tooltip-format": "Hava durumu (İstanbul, wttr.in)\nSağ tık: ayrıntı",
+        "tooltip-format": "Weather (Istanbul, wttr.in)\nClick: open forecast in browser",
         "format": "{}",
-        "format-alt": "{alt}: {}",
-        "format-alt-click": "click-right",
+        "on-click": "xdg-open https://wttr.in/Istanbul",
         "interval": 3600,
         "exec": "curl -s 'https://wttr.in/Istanbul?format=1'",
         //"return-type": "json",
@@ -147,7 +147,7 @@
         "exec-if": "ping -c1 -W2 wttr.in"
     },
     "custom/media": {
-        "tooltip-format": "Çalan medya\nTıkla: oynat/duraklat · Kaydır: önceki/sonraki",
+        "tooltip-format": "Now playing\nClick: play/pause · Scroll: previous/next",
         "format": "{icon} {}",
         "return-type": "json",
         "max-length": 40,
@@ -168,12 +168,12 @@
         "interval": 30,
         "signal": 8,
         "tooltip": true,
-        "tooltip-format": "Güç profili\nTıkla: değiştir",
+        "tooltip-format": "Power profile\nClick: change",
         "on-click": "~/.config/hypr/scripts/powerprofile.sh"
     },
     "custom/power": {
         "tooltip": true,
-        "tooltip-format": "Güç menüsü (kilitle / çıkış / uyku / yeniden başlat / kapat)",
+        "tooltip-format": "Power menu (lock / log out / suspend / reboot / shut down)",
         "format": "",
         "on-click": "~/.config/hypr/scripts/powermenu.sh"
     },
@@ -187,7 +187,7 @@
 
     "cpu": {
         "tooltip": true,
-        "tooltip-format": "İşlemci kullanımı: %{usage} @ {max_frequency} GHz\nYük: {load}",
+        "tooltip-format": "CPU usage: %{usage} @ {max_frequency} GHz\nLoad: {load}",
         "interval": 1,
         //"format": " {}%", // Icon: microchip
         "format": "  {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
@@ -247,7 +247,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "tooltip-format": "Ses: %{volume} ({desc})\nTıkla: pavucontrol · Sağ tık: mikrofonu sustur · Kaydır: ±3%",
+        "tooltip-format": "Volume: %{volume} ({desc})\nClick: pavucontrol · Right click: mute mic · Scroll: ±3%",
         "on-click": "pavucontrol",
         "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     },
