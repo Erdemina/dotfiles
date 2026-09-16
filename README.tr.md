@@ -67,9 +67,9 @@ CachyOS veya Arch, KDE Plasma 6 kurulu, Wayland. Hyprland ≥ 0.55 (Lua config).
 | `Meta+←↑↓→` / `+Shift` / `+Ctrl+Shift` | odak / taşı / boyutlandır |
 | `Alt+Tab`, `Meta+Tab` | pencereler arasında gez |
 | `Meta+V` | pano geçmişi · `Meta+Shift+V` yüzen/döşeli |
-| `Meta+S` / `Meta+Alt+S` | scratchpad göster / gönder · `Meta+Shift+S` bölge görüntüsü → pano |
+| `Meta+S` / `Meta+Shift+S` | scratchpad göster / gönder |
 | `Meta+G` | sekmeli grup · `Meta+P` pseudotile · `Meta+J` bölme yönü · `Meta+Shift+P` sabitle |
-| `Print` / `Meta+Shift+Print` / `Meta+Print` | Spectacle tam / bölge / pencere · `Meta+Shift+W` hyprshot bölge |
+| `Print` / `Meta+Shift+Print` / `Meta+Print` | Spectacle tam / bölge / pencere · `Meta+Shift+W` Spectacle bölge (KDE'de de aynı) |
 | `Meta+L` | kilitle · `Meta+M`, `Ctrl+Alt+Del` güç menüsü |
 | `Meta+I` | ayar menüsü · `Meta+Shift+B` duvar kağıdı seçici (KDE'ye de yazar) · `Meta+Shift+N` bildirimleri kapat |
 | 3 parmak kaydırma | çalışma alanı (yatay), tam ekran (yukarı), kapat (aşağı) |
