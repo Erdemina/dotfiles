@@ -34,6 +34,7 @@ hl.bind(mod .. " + Print",        hl.dsp.exec_cmd("spectacle -a"), { description
 hl.bind("SHIFT + Print",          hl.dsp.exec_cmd("spectacle -f"), { description = "Spectacle: tam ekran" })
 -- Yedek: hyprshot (dotfiles: Meta+Shift+W)
 hl.bind(mod .. " + SHIFT + W",    hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots"), { description = "hyprshot: bölge" })
+hl.bind(mod .. " + SHIFT + S",    hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"), { description = "Bölge görüntüsünü panoya kopyala" })
 
 -- ── Pencere ─────────────────────────────────────────────────────────────
 hl.bind(mod .. " + C",     hl.dsp.window.close(),      { description = "Pencereyi kapat (KDE özel: Meta+C)" })
@@ -89,7 +90,7 @@ hl.bind(mod .. " + mouse_up",     hl.dsp.focus({ workspace = "e-1" }))
 
 -- Scratchpad (dotfiles)
 hl.bind(mod .. " + S",         hl.dsp.workspace.toggle_special("magic"), { description = "Scratchpad göster/gizle" })
-hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }), { description = "Scratchpad'e taşı" })
+hl.bind(mod .. " + ALT + S",   hl.dsp.window.move({ workspace = "special:magic" }), { description = "Scratchpad'e taşı" })
 
 -- ── Medya / parlaklık (kilit ekranında da çalışır) ───────────────────────
 local held = { locked = true, repeating = true }
