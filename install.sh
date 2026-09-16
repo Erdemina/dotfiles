@@ -78,6 +78,9 @@ deploy mako    "$CFG/mako"
 run mkdir -p "$CFG/autostart"
 run cp "$REPO/autostart/blueman.desktop" "$CFG/autostart/blueman.desktop"   # keep blueman out of the KDE session
 ok "$CFG/autostart/blueman.desktop"
+run mkdir -p "$CFG/xdg-desktop-portal"
+run cp "$REPO/xdg-desktop-portal/hyprland-portals.conf" "$CFG/xdg-desktop-portal/"   # Secret portal → KWallet (Chromium logins survive)
+ok "$CFG/xdg-desktop-portal/hyprland-portals.conf"
 run chmod +x "$CFG/hypr/scripts/"*.sh "$CFG/waybar/mediaplayer.py" "$CFG/waybar/modules/"*.sh 2>/dev/null || true
 
 # ── 3. keyboard layout from the system (localectl) ───────────────────────
@@ -107,7 +110,8 @@ cat <<MSG
 Done. Reboot (or log out) and pick "Hyprland" in the session menu — KDE stays untouched.
 Bitti. Yeniden başlatıp giriş ekranında "Hyprland" oturumunu seçin — KDE olduğu gibi kalır.
 
-  Meta+Q  terminal (ghostty)    Meta        launcher (rofi)     Meta+Shift+B  wallpaper picker
+  Meta+I  settings menu         Meta+Shift+B wallpaper picker   Meta+Q        terminal (ghostty)
+  Meta    launcher (rofi)
   Meta+C  close window          Meta+F      fullscreen          Meta+M        power menu
   Print   Spectacle             Meta+L      lock (hyprlock)     Meta+V        clipboard history
 MSG

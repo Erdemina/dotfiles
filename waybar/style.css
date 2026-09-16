@@ -86,6 +86,7 @@ window#waybar.hidden {
 #bluetooth,
 #custom-hyprPicker,
 #custom-power-menu,
+#custom-powerprofile,
 #custom-spotify,
 #custom-weather,
 #custom-weather.severe,
@@ -295,7 +296,11 @@ label:focus {
 
 #custom-power {
   padding: 0px 12px;
-  color: #ff492a;
+  color: #89b4fa;
   border-radius: 20px;
   background-color: #1e1e1e;
+}
+
+#custom-powerprofile {
+  color: #a6e3a1;
 }

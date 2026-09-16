@@ -57,7 +57,8 @@ current() {
 }
 
 write_hyprpaper_conf() {
-    printf 'splash = false\npreload = %s\nwallpaper = ,%s\n' "$1" "$1" > "$HYPRPAPER_CONF"
+    # hyprpaper >= 0.8 formatı
+    printf 'splash = false\n\nwallpaper {\n    monitor =\n    path = %s\n    fit_mode = cover\n}\n' "$1" > "$HYPRPAPER_CONF"
     printf '$wallpaper = %s\n' "$1" > "$HOME/.config/hypr/wallpaper.conf"   # hyprlock için
 }
 
@@ -65,9 +66,10 @@ apply_hypr() {
     local img="$1"
     write_hyprpaper_conf "$img"
     if pgrep -x hyprpaper >/dev/null; then
-        hyprctl hyprpaper preload "$img" >/dev/null
-        hyprctl hyprpaper wallpaper ",$img" >/dev/null
-        hyprctl hyprpaper unload unused >/dev/null 2>&1 || true
+        # hyprpaper >= 0.8 IPC: her monitöre ayrı ayrı ver (fallback yalnız yeni monitörlere uygulanır)
+        for mon in $(hyprctl monitors -j | python3 -c 'import json,sys; print(" ".join(m["name"] for m in json.load(sys.stdin)))'); do
+            hyprctl hyprpaper wallpaper "$mon, $img, cover" >/dev/null
+        done
     else
         setsid hyprpaper >/dev/null 2>&1 &
     fi

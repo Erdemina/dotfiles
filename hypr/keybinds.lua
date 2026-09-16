@@ -25,6 +25,7 @@ hl.bind(mod .. " + M",      hl.dsp.exec_cmd(powermenu),   { description = "Güç
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(powermenu), { description = "Güç menüsü (KDE: Ctrl+Alt+Del)" })
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd(scripts .. "/wallpaper.sh pick"), { description = "Duvar kağıdı seç (KDE ile senkron)" })
 hl.bind(mod .. " + SHIFT + N", hl.dsp.exec_cmd("makoctl dismiss --all"), { description = "Bildirimleri kapat" })
+hl.bind(mod .. " + I",         hl.dsp.exec_cmd(scripts .. "/settings.sh"), { description = "Hyprland ayar menüsü" })
 
 -- ── Ekran görüntüsü: Spectacle (KDE varsayılanları) ─────────────────────
 hl.bind("Print",                  hl.dsp.exec_cmd("spectacle"),    { description = "Spectacle" })

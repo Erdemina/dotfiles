@@ -22,15 +22,17 @@ KDE uygulamalarını paylaşır.
 | Duvar kağıdı | **KDE ile senkron** | `hypr/scripts/wallpaper.sh` Plasma'nın config'ini okur; Hyprland'de değiştirince Plasma masaüstü + kilit ekranına da yazar |
 | Çubuk | waybar | çalışma alanları, medya, hava, cpu/ram/sıcaklık, ağ, pil, ses, tepsi, güç |
 | Başlatıcı | rofi 2 (yerel Wayland) | Plasma'daki gibi tek `Meta` |
-| Terminal | ghostty | Catppuccin Mocha, blur |
+| Terminal | ghostty | Catppuccin Mocha, 78% opacity + blur, Konsole-style tab/split keys |
 | Kilit / boşta | hyprlock + hypridle | kilit ekranı da KDE duvar kağıdını kullanır |
 | Bildirim | mako | |
 | Pano | cliphist | Klipper gibi `Meta+V` |
 | Ekran görüntüsü | **Spectacle** (xdg-desktop-portal-hyprland üzerinden), yedek hyprshot | |
 | Dosya / yetki / tepsi | Dolphin, polkit-kde-agent, KDE Connect, nm-applet, blueman | |
 | Qt teması | `QT_QPA_PLATFORMTHEME=kde` | Qt uygulamaları `kdeglobals`'ı okur → Breeze Dark, ikonlar, fontlar Plasma ile birebir |
+| Gizli anahtarlar | Secret portal → **KWallet** (`xdg-desktop-portal/hyprland-portals.conf`) | Chromium tabanlı tarayıcılar çerez/parolalarını korur — Plasma'dan geçince tekrar giriş yok |
+| Ayarlar | `Meta+I` rofi menüsü (`hypr/scripts/settings.sh`) | duvar kağıdı, kenarlık rengi, boşluk, blur, animasyon, klavye düzeni, güç profili, config düzenle, dotfiles'a kaydet |
 
-Görünüm: turuncu→sarı gradient kenarlık, 12px boşluk, 10px yuvarlatma, hafif blur.
+Görünüm: mavi→gök mavisi gradient kenarlık, 12px boşluk, 10px yuvarlatma, hafif blur.
 
 ## Kurulum
 
@@ -69,7 +71,7 @@ CachyOS veya Arch, KDE Plasma 6 kurulu, Wayland. Hyprland ≥ 0.55 (Lua config).
 | `Meta+G` | sekmeli grup · `Meta+P` pseudotile · `Meta+J` bölme yönü · `Meta+Shift+P` sabitle |
 | `Print` / `Meta+Shift+Print` / `Meta+Print` | Spectacle tam / bölge / pencere · `Meta+Shift+W` hyprshot bölge |
 | `Meta+L` | kilitle · `Meta+M`, `Ctrl+Alt+Del` güç menüsü |
-| `Meta+Shift+B` | duvar kağıdı seçici (KDE'ye de yazar) · `Meta+Shift+N` bildirimleri kapat |
+| `Meta+I` | ayar menüsü · `Meta+Shift+B` duvar kağıdı seçici (KDE'ye de yazar) · `Meta+Shift+N` bildirimleri kapat |
 | 3 parmak kaydırma | çalışma alanı (yatay), tam ekran (yukarı), kapat (aşağı) |
 
 `hyprctl binds` hepsini açıklamalarıyla listeler.
@@ -93,6 +95,7 @@ hypr/         hyprland.lua (giriş) → monitors, environment, input, lookandfee
 waybar/       config, style.css, mediaplayer.py, modules/
 rofi/  ghostty/  mako/
 autostart/    NotShowIn=KDE'li blueman.desktop (Plasma'da çift tepsi simgesi olmasın)
+xdg-desktop-portal/  hyprland-portals.conf — Secret → kwallet, FileChooser → kde
 install.sh
 ```
 

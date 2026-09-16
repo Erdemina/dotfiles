@@ -22,15 +22,17 @@ theme and the KDE apps you already use.
 | Wallpaper | **synced with KDE** | `hypr/scripts/wallpaper.sh` reads Plasma's config; changing it in Hyprland writes back to Plasma desktop + lock screen |
 | Bar | waybar | workspaces, media, weather, cpu/mem/temp, net, battery, audio, tray, power |
 | Launcher | rofi 2 (native Wayland) | single `Meta` press, like Plasma |
-| Terminal | ghostty | Catppuccin Mocha, blur |
+| Terminal | ghostty | Catppuccin Mocha, 78% opacity + blur, Konsole-style tab/split keys |
 | Lock / idle | hyprlock + hypridle | lock screen uses the KDE wallpaper too |
 | Notifications | mako | |
 | Clipboard | cliphist | `Meta+V`, like Klipper |
 | Screenshots | **Spectacle** (via xdg-desktop-portal-hyprland), hyprshot as fallback | |
 | Files / auth / tray | Dolphin, polkit-kde-agent, KDE Connect, nm-applet, blueman | |
 | Qt theming | `QT_QPA_PLATFORMTHEME=kde` | Qt apps read your `kdeglobals` → Breeze Dark, icons, fonts identical to Plasma |
+| Secrets | Secret portal → **KWallet** (`xdg-desktop-portal/hyprland-portals.conf`) | Chromium-based browsers keep their cookies/passwords — no re-login when switching from Plasma |
+| Settings | `Meta+I` rofi menu (`hypr/scripts/settings.sh`) | wallpaper, border colour, gaps, blur, animations, keyboard layout, power profile, edit configs, sync to dotfiles |
 
-Look: orange→yellow gradient borders, 12px gaps, rounding 10, light blur.
+Look: blue→sky gradient borders, 12px gaps, rounding 10, light blur.
 
 ## Install
 
@@ -69,7 +71,7 @@ Priority: custom shortcuts from my KDE setup → KDE defaults → old dotfiles.
 | `Meta+G` | tabbed group · `Meta+P` pseudotile · `Meta+J` toggle split · `Meta+Shift+P` pin |
 | `Print` / `Meta+Shift+Print` / `Meta+Print` | Spectacle full / region / window · `Meta+Shift+W` hyprshot region |
 | `Meta+L` | lock · `Meta+M`, `Ctrl+Alt+Del` power menu |
-| `Meta+Shift+B` | wallpaper picker (syncs to KDE) · `Meta+Shift+N` dismiss notifications |
+| `Meta+I` | settings menu · `Meta+Shift+B` wallpaper picker (syncs to KDE) · `Meta+Shift+N` dismiss notifications |
 | 3-finger swipe | workspaces (horizontal), fullscreen (up), close (down) |
 
 `hyprctl binds` lists everything with descriptions.
@@ -93,6 +95,7 @@ hypr/         hyprland.lua (entry) → monitors, environment, input, lookandfeel
 waybar/       config, style.css, mediaplayer.py, modules/
 rofi/  ghostty/  mako/
 autostart/    blueman.desktop with NotShowIn=KDE (no duplicate tray icon in Plasma)
+xdg-desktop-portal/  hyprland-portals.conf — Secret → kwallet, FileChooser → kde
 install.sh
 ```
 
