@@ -175,8 +175,7 @@
         "tooltip": true,
         "tooltip-format": "Güç menüsü (kilitle / çıkış / uyku / yeniden başlat / kapat)",
         "format": "",
-        "tooltip": false,
-        "on-click": "wlogout"
+        "on-click": "~/.config/hypr/scripts/powermenu.sh"
     },
 
     "clock#date": {
