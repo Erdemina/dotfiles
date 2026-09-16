@@ -67,7 +67,7 @@ Priority: custom shortcuts from my KDE setup → KDE defaults → old dotfiles.
 | `Meta+←↑↓→` / `+Shift` / `+Ctrl+Shift` | focus / move / resize |
 | `Alt+Tab`, `Meta+Tab` | cycle windows |
 | `Meta+V` | clipboard history · `Meta+Shift+V` toggle floating |
-| `Meta+S` / `Meta+Shift+S` | scratchpad show / send |
+| `Meta+S` / `Meta+Alt+S` | scratchpad show / send · `Meta+Shift+S` region screenshot → clipboard |
 | `Meta+G` | tabbed group · `Meta+P` pseudotile · `Meta+J` toggle split · `Meta+Shift+P` pin |
 | `Print` / `Meta+Shift+Print` / `Meta+Print` | Spectacle full / region / window · `Meta+Shift+W` hyprshot region |
 | `Meta+L` | lock · `Meta+M`, `Ctrl+Alt+Del` power menu |
