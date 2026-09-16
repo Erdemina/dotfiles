@@ -1,1 +1,0 @@
-hyprshot -m region

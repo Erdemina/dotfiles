@@ -292,3 +292,10 @@ label:focus {
 #keyboard-state > label.locked {
   background: rgba(0, 0, 0, 0.2);
 }
+
+#custom-power {
+  padding: 0px 12px;
+  color: #ff492a;
+  border-radius: 20px;
+  background-color: #1e1e1e;
+}

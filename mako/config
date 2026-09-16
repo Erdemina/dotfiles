@@ -1,0 +1,20 @@
+# mako bildirimleri — Breeze Dark uyumlu
+font=Noto Sans 10
+background-color=#1e1e1eee
+text-color=#e5e5e5
+border-color=#ff492a
+border-size=2
+border-radius=10
+padding=12
+margin=10
+width=360
+default-timeout=6000
+anchor=top-right
+layer=overlay
+icons=1
+max-icon-size=48
+icon-path=/usr/share/icons/breeze-dark:/usr/share/icons/breeze
+
+[urgency=high]
+border-color=#ffd72a
+default-timeout=0

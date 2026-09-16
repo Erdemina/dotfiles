@@ -34,8 +34,8 @@
         "battery",
         "pulseaudio",
         //"custom/screenshot_t",
-        "tray"
-        //"custom/power"
+        "tray",
+        "custom/power"
     ],
 
 
@@ -74,7 +74,7 @@
     "memory": {
         "interval": 10,
         "format": "☰ {used:0.2f} / {total:0.0f} GB",
-        "on-click": "alacritty -e btop"
+        "on-click": "ghostty -e btop"
     },
 
     "battery": {
@@ -137,8 +137,23 @@
         "exec": "curl -s 'https://wttr.in/Istanbul?format=1'",
         //"return-type": "json",
         //"exec": "~/.config/waybar/modules/weather.sh",
-        "exec-if": "ping wttr.in -c1"
+        "exec-if": "ping -c1 -W2 wttr.in"
     },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true
+    },
+
     "custom/power": {
         "format": "",
         "tooltip": false,
@@ -182,9 +197,12 @@
         "exec": "$HOME/.config/waybar/get_kbdlayout.sh"
     },*/
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "on-click": "activate",
-        "format": "{icon}"
+        "format": "{id}",
+        "all-outputs": true,
+        "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+        "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'"
     },
 
     "pulseaudio": {
@@ -206,10 +224,9 @@
             "phone": "",
             "portable": "",
             "car": "",
-           // "default": ["", "", ""]
+            "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
-		"on-click-middle": "pulseaudio-control --node-blacklist 'easyeffects_sink' next-node",
         "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     },
 
