@@ -26,7 +26,7 @@ KDE uygulamalarını paylaşır.
 | Kilit / boşta | hyprlock + hypridle | kilit ekranı da KDE duvar kağıdını kullanır |
 | Bildirim | mako | |
 | Pano | cliphist | Klipper gibi `Meta+V` |
-| Ekran görüntüsü | **Spectacle** (xdg-desktop-portal-hyprland üzerinden), yedek hyprshot | |
+| Ekran görüntüsü | grim + slurp → **satty** düzenleyici (`Meta+Shift+W` bölge — KDE'de Spectacle için aynı tuş) | Spectacle KWin dışı Wayland'i reddediyor |
 | Dosya / yetki / tepsi | Dolphin, polkit-kde-agent, KDE Connect, nm-applet, blueman | |
 | Qt teması | `QT_QPA_PLATFORMTHEME=kde` | Qt uygulamaları `kdeglobals`'ı okur → Breeze Dark, ikonlar, fontlar Plasma ile birebir |
 | Gizli anahtarlar | Secret portal → **KWallet** (`xdg-desktop-portal/hyprland-portals.conf`) | Chromium tabanlı tarayıcılar çerez/parolalarını korur — Plasma'dan geçince tekrar giriş yok |
@@ -69,7 +69,7 @@ CachyOS veya Arch, KDE Plasma 6 kurulu, Wayland. Hyprland ≥ 0.55 (Lua config).
 | `Meta+V` | pano geçmişi · `Meta+Shift+V` yüzen/döşeli |
 | `Meta+S` / `Meta+Shift+S` | scratchpad göster / gönder |
 | `Meta+G` | sekmeli grup · `Meta+P` pseudotile · `Meta+J` bölme yönü · `Meta+Shift+P` sabitle |
-| `Print` / `Meta+Shift+Print` / `Meta+Print` | Spectacle tam / bölge / pencere · `Meta+Shift+W` Spectacle bölge (KDE'de de aynı) |
+| `Print` / `Meta+Shift+Print` / `Meta+Print` | görüntü tam / bölge / pencere (satty) · `Meta+Shift+W` bölge |
 | `Meta+L` | kilitle · `Meta+M`, `Ctrl+Alt+Del` güç menüsü |
 | `Meta+I` | ayar menüsü · `Meta+Shift+B` duvar kağıdı seçici (KDE'ye de yazar) · `Meta+Shift+N` bildirimleri kapat |
 | 3 parmak kaydırma | çalışma alanı (yatay), tam ekran (yukarı), kapat (aşağı) |

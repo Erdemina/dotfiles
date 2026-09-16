@@ -27,12 +27,12 @@ hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd(scripts .. "/wallpaper.sh pick"),
 hl.bind(mod .. " + SHIFT + N", hl.dsp.exec_cmd("makoctl dismiss --all"), { description = "Bildirimleri kapat" })
 hl.bind(mod .. " + I",         hl.dsp.exec_cmd(scripts .. "/settings.sh"), { description = "Hyprland ayar menüsü" })
 
--- ── Ekran görüntüsü: Spectacle (KDE varsayılanları) ─────────────────────
-hl.bind("Print",                  hl.dsp.exec_cmd("spectacle"),    { description = "Spectacle" })
-hl.bind(mod .. " + SHIFT + Print",hl.dsp.exec_cmd("spectacle -r"), { description = "Spectacle: bölge" })
-hl.bind(mod .. " + Print",        hl.dsp.exec_cmd("spectacle -a"), { description = "Spectacle: aktif pencere" })
-hl.bind("SHIFT + Print",          hl.dsp.exec_cmd("spectacle -f"), { description = "Spectacle: tam ekran" })
-hl.bind(mod .. " + SHIFT + W",    hl.dsp.exec_cmd("spectacle -r"), { description = "Spectacle: bölge (KDE ile aynı kısayol)" })
+-- ── Ekran görüntüsü: grim+slurp → satty (Spectacle Wayland'de KWin istiyor) ─
+local shot = scripts .. "/screenshot.sh"
+hl.bind(mod .. " + SHIFT + W",     hl.dsp.exec_cmd(shot .. " region"), { description = "Ekran görüntüsü: bölge (KDE ile aynı kısayol)" })
+hl.bind("Print",                   hl.dsp.exec_cmd(shot .. " full"),   { description = "Ekran görüntüsü: tam ekran" })
+hl.bind(mod .. " + SHIFT + Print", hl.dsp.exec_cmd(shot .. " region"), { description = "Ekran görüntüsü: bölge" })
+hl.bind(mod .. " + Print",         hl.dsp.exec_cmd(shot .. " window"), { description = "Ekran görüntüsü: aktif pencere" })
 
 -- ── Pencere ─────────────────────────────────────────────────────────────
 hl.bind(mod .. " + C",     hl.dsp.window.close(),      { description = "Pencereyi kapat (KDE özel: Meta+C)" })

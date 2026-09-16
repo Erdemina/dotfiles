@@ -21,7 +21,7 @@ configuration {
     show-icons: true;
     display-drun: "";
     /* Ctrl+A: yazdığını tamamen sil (rofi'de metin seçimi yok) */
-    kb-move-front: "Home";
+    kb-move-front: "Control+Home";
     kb-clear-line: "Control+a,Control+w";
     kb-remove-word-back: "Control+BackSpace,Control+Alt+h";
 }

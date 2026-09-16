@@ -42,7 +42,7 @@ PACKAGES=(
     # compositor + hypr ecosystem
     hyprland xdg-desktop-portal-hyprland hyprpaper hyprlock hypridle hyprshot hyprland-guiutils
     # bar / launcher / notifications / clipboard
-    waybar rofi mako cliphist wl-clipboard grim slurp
+    waybar rofi mako cliphist wl-clipboard grim slurp satty
     # terminal + tray helpers
     ghostty network-manager-applet blueman brightnessctl playerctl pavucontrol btop xsensors
     # KDE apps reused inside Hyprland

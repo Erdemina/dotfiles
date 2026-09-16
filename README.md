@@ -26,7 +26,7 @@ theme and the KDE apps you already use.
 | Lock / idle | hyprlock + hypridle | lock screen uses the KDE wallpaper too |
 | Notifications | mako | |
 | Clipboard | cliphist | `Meta+V`, like Klipper |
-| Screenshots | **Spectacle** (via xdg-desktop-portal-hyprland), hyprshot as fallback | |
+| Screenshots | grim + slurp → **satty** editor (`Meta+Shift+W` region — same key set in KDE for Spectacle) | Spectacle refuses non-KWin Wayland |
 | Files / auth / tray | Dolphin, polkit-kde-agent, KDE Connect, nm-applet, blueman | |
 | Qt theming | `QT_QPA_PLATFORMTHEME=kde` | Qt apps read your `kdeglobals` → Breeze Dark, icons, fonts identical to Plasma |
 | Secrets | Secret portal → **KWallet** (`xdg-desktop-portal/hyprland-portals.conf`) | Chromium-based browsers keep their cookies/passwords — no re-login when switching from Plasma |
@@ -69,7 +69,7 @@ Priority: custom shortcuts from my KDE setup → KDE defaults → old dotfiles.
 | `Meta+V` | clipboard history · `Meta+Shift+V` toggle floating |
 | `Meta+S` / `Meta+Shift+S` | scratchpad show / send |
 | `Meta+G` | tabbed group · `Meta+P` pseudotile · `Meta+J` toggle split · `Meta+Shift+P` pin |
-| `Print` / `Meta+Shift+Print` / `Meta+Print` | Spectacle full / region / window · `Meta+Shift+W` Spectacle region (same shortcut set in KDE) |
+| `Print` / `Meta+Shift+Print` / `Meta+Print` | screenshot full / region / window (satty) · `Meta+Shift+W` region |
 | `Meta+L` | lock · `Meta+M`, `Ctrl+Alt+Del` power menu |
 | `Meta+I` | settings menu · `Meta+Shift+B` wallpaper picker (syncs to KDE) · `Meta+Shift+N` dismiss notifications |
 | 3-finger swipe | workspaces (horizontal), fullscreen (up), close (down) |
