@@ -147,7 +147,7 @@
     },
     "custom/media": {
         "tooltip-format": "Now playing\nClick: play/pause · Scroll: previous/next",
-        "format": "{icon} {}",
+        "format": "{icon} {text}",
         "return-type": "json",
         "max-length": 40,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null",
