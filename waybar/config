@@ -100,16 +100,16 @@
         ]
     },
     "network": {
-        "format-wifi": "  {bandwidthDownBytes}   {bandwidthUpBytes}",
-        "format-ethernet": "  {bandwidthDownBytes}   {bandwidthUpBytes}",
+        "format-wifi": "<span color=\"#a6e3a1\">󰇚</span> {bandwidthDownBytes}  <span color=\"#f38ba8\">󰕒</span> {bandwidthUpBytes}",
+        "format-ethernet": "<span color=\"#a6e3a1\">󰇚</span> {bandwidthDownBytes}  <span color=\"#f38ba8\">󰕒</span> {bandwidthUpBytes}",
         "interval": 1,
         "format-linked": "{ifname} (No IP) ",
         "format": "",
         "format-disconnected": "󰤭  offline",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
-        "tooltip-format": "Network: {ifname}\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}\nClick: copy IP",
-        "tooltip-format-wifi": "Wi-Fi: {essid} ({frequency} MHz)\nSignal: {signaldBm} dBm (%{signalStrength})\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}\nClick: copy IP",
+        "tooltip-format": "Network: {ifname}\nIP: {ipaddr}/{cidr}\n󰇚 download {bandwidthDownBits}   󰕒 upload {bandwidthUpBits}\nClick: copy IP",
+        "tooltip-format-wifi": "Wi-Fi: {essid} ({frequency} MHz)\nSignal: {signaldBm} dBm (%{signalStrength})\nIP: {ipaddr}/{cidr}\n󰇚 download {bandwidthDownBits}   󰕒 upload {bandwidthUpBits}\nClick: copy IP",
         "tooltip-format-disconnected": "No network connection"
     },
 
@@ -219,7 +219,6 @@
     "hyprland/workspaces": {
         "on-click": "activate",
         "tooltip": false,
-        "persistent-workspaces": { "*": 5 },
         "format": "{id}",
         "all-outputs": true,
         "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",

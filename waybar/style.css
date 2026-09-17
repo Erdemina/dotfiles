@@ -53,7 +53,15 @@ window#waybar.hidden {
   background-color: transparent;
 }
 #workspaces button.active {
-  color: #fff;
+  color: #11111b;
+  background-color: #89b4fa;
+  border-radius: 12px;
+  padding: 0 6px;
+  transition: all 0.25s ease;
+}
+#workspaces button {
+  transition: all 0.25s ease;
+  padding: 0 4px;
 }
 
 #workspaces button.urgent {
