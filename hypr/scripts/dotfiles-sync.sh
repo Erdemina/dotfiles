@@ -22,7 +22,14 @@ else
     git add -A
     git commit -q -m "Sync configs from ~/.config ($(date +%Y-%m-%d\ %H:%M))"
     msg="Commit: $(git log -1 --format=%h)"
-    if git push -q origin main 2>/dev/null; then msg="$msg — pushed"; else msg="$msg — push failed (GitHub SSH key?)"; fi
+    LOG="${XDG_CACHE_HOME:-$HOME/.cache}/dotfiles-sync.log"
+    # Anlık ağ hatalarına karşı bir kez daha dene; hatayı yutma, log'a yaz ve bildirimde göster
+    if git push -q origin main 2>"$LOG" || { sleep 3; git push -q origin main 2>"$LOG"; }; then
+        msg="$msg — pushed"
+    else
+        err=$(grep -v '^$' "$LOG" | tail -1)
+        msg="$msg — push failed: ${err:-bilinmeyen hata} (log: $LOG)"
+    fi
     echo "$msg"
 fi
 command -v notify-send >/dev/null && notify-send -a "Dotfiles" "$msg"
