@@ -7,12 +7,13 @@
     fgp-color: #888888FF;
     b-radius: 8px;
     g-padding: 8px;
-    hl-color: #89b4faFF;
+    hl-color: #b4befeFF;         /* accent — seçili satırın metni (settings.sh günceller) */
+    hl-bg-color: #b4befe26;      /* accent, %15 saydam — seçili satırın zemini */
     hlt-color: #11111bFF;
     alt-color: #111111FF;
     wbg-color: #000000CC;
     w-border: 2px solid;
-    w-border-color: #89b4faFF;   /* accent — settings.sh "Border colour" updates this */
+    w-border-color: #b4befeFF;   /* accent — settings.sh "Border colour" updates this */
     w-padding: 12px;
 }
 
@@ -90,13 +91,13 @@ element alternate.normal {
 }
 
 element selected.active {
-	background-color: @hl-color;
-	text-color: @hlt-color;
+	background-color: @hl-bg-color;
+	text-color: @hl-color;
 }
 
 element selected.normal {
-	background-color: @hl-color;
-	text-color: @hlt-color;
+	background-color: @hl-bg-color;
+	text-color: @hl-color;
 }
 
 message {

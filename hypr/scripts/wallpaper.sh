@@ -127,7 +127,8 @@ case "${1:-}" in
             hyprctl dispatch 'hl.dsp.focus({ workspace = "empty" })' >/dev/null
             trap 'hyprctl dispatch "hl.dsp.focus({ workspace = $prev })" >/dev/null' EXIT
         fi
-        "$(dirname "$0")/wallpaper-picker.py" "$cur" "${files[@]}" || preview_hypr "$cur"   # vazgeçildi → eskisi
+        # HL_INITIAL_WORKSPACE_TOKEN: Hyprland pencereyi keybind'in basıldığı alana yerleştirirdi → sil ki boş alana açılsın
+        env -u HL_INITIAL_WORKSPACE_TOKEN "$(dirname "$0")/wallpaper-picker.py" "$cur" "${files[@]}" || preview_hypr "$cur"   # vazgeçildi → eskisi
         ;;
 
     *) echo "kullanım: $0 current|apply|set <dosya>|pick|preview <dosya>"; exit 1 ;;

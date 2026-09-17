@@ -54,7 +54,8 @@ window#waybar.hidden {
 }
 #workspaces button.active {
   color: #11111b;
-  background-color: #89b4fa;
+  /* hyprland active_border ile aynı: f38ba8 → fab387, 30° */
+  background-image: linear-gradient(120deg, #b4befe, #cba6f7);
   border-radius: 12px;
   padding: 0 6px;
   transition: all 0.25s ease;
@@ -305,7 +306,7 @@ label:focus {
 
 #custom-power {
   padding: 0px 12px;
-  color: #89b4fa;
+  color: #b4befe;
   border-radius: 20px;
   background-color: #1e1e1e;
 }

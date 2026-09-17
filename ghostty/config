@@ -18,11 +18,11 @@ bold-is-bright     = true
 theme               = Catppuccin Mocha
 background          = #11111b
 foreground          = #cdd6f4
-cursor-color        = #89b4fa
+cursor-color        = #b4befe
 cursor-text         = #11111b
 selection-background = #45475a
-selection-foreground = #89b4fa
-split-divider-color = #89b4fa
+selection-foreground = #b4befe
+split-divider-color = #b4befe
 minimum-contrast    = 1.1
 
 # ── Saydamlık / blur (Hyprland blur'u da uygular) ───────────

@@ -1,9 +1,26 @@
 #!/usr/bin/env python3
 """waybar custom module: workspaces as ONE label (no add/remove flicker).
 Listens to Hyprland's event socket and reprints on every change."""
-import json, os, socket, subprocess, sys, html
+import json, os, pathlib, socket, subprocess, sys, html
 
-ACCENT = "#89b4fa"; ACCENT_FG = "#11111b"; DIM = "#7984a4"; FG = "#cdd6f4"
+import re
+ACCENT_FG = "#11111b"; DIM = "#7984a4"; FG = "#cdd6f4"
+
+def border_colour():
+    """lookandfeel.lua'daki active_border'ın ilk rengi (tek kaynak); Pango gradyan bilmez."""
+    try:
+        lua = pathlib.Path("~/.config/hypr/lookandfeel.lua").expanduser().read_text()
+        return "#" + re.search(r'active_border\s*=\s*\{ colors = \{ "rgba\(([0-9a-fA-F]{6})', lua).group(1)
+    except Exception:
+        return "#89b4fa"
+
+def brighten(hex_colour, k=0.25):
+    """#rrggbb → beyaza doğru k oranında açılmış hâli (parlak/glow hissi)"""
+    r, g, b = (int(hex_colour[i:i + 2], 16) for i in (1, 3, 5))
+    return "#%02x%02x%02x" % tuple(round(c + (255 - c) * k) for c in (r, g, b))
+
+ACCENT = border_colour()
+ACCENT_BRIGHT = brighten(ACCENT)
 EVENTS = ("workspace", "createworkspace", "destroyworkspace", "focusedmon",
           "openwindow", "closewindow", "movewindow", "activespecial", "urgent")
 
@@ -17,7 +34,8 @@ def render():
     parts = []
     for i in ids:
         if i == active:
-            parts.append(f'<span background="{ACCENT}" foreground="{ACCENT_FG}" weight="bold"> {i} </span>')
+            # rofi / seçicilerle aynı stil: %15 saydam accent zemin + parlatılmış accent metin, kalın ve bir tık büyük
+            parts.append(f'<span background="{ACCENT}" background_alpha="15%" foreground="{ACCENT_BRIGHT}" weight="heavy" size="large"> {i} </span>')
         else:
             parts.append(f'<span foreground="{DIM}"> {i} </span>')
     text = "".join(parts) or " "

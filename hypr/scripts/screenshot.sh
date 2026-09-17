@@ -31,8 +31,17 @@ edit() {      # stdin PNG -> satty (or fallback: save + copy)
 
 ocr() {
     geom="$("${SLURP[@]}")" || return 0
-    langs="eng"; [ -f /usr/share/tessdata/tur.traineddata ] && langs="tur+eng"
-    text="$(grim -g "$geom" - | tesseract - - -l "$langs" 2>/dev/null | sed -e 's/[[:space:]]*$//' -e '/^$/d')"
+    langs="eng"; [ -f /usr/share/tessdata/tur.traineddata ] && langs="tur+eng"   # tur yoksa: sudo pacman -S tesseract-data-tur
+    img="$(mktemp --suffix=.png)"; grim -g "$geom" "$img"
+    if command -v magick >/dev/null; then
+        # Ön işleme: gri + 3x büyüt (ekran yazısı ~10px, tesseract büyük sever); koyu zeminse negatif
+        # (-alpha off şart: yoksa -negate alfa kanalını da çevirip görüntüyü boşaltıyor). psm 6: tek metin bloğu.
+        neg=(); [ "$(magick "$img" -alpha off -colorspace Gray -format '%[fx:mean<0.5?1:0]' info:)" = 1 ] && neg=(-negate)
+        text="$(magick "$img" -alpha off -colorspace Gray -resize 300% "${neg[@]}" png:- | tesseract - - -l "$langs" --psm 6 2>/dev/null | sed -e 's/[[:space:]]*$//' -e '/^$/d')"
+    else
+        text="$(tesseract "$img" - -l "$langs" --psm 6 2>/dev/null | sed -e 's/[[:space:]]*$//' -e '/^$/d')"
+    fi
+    rm -f "$img"
     if [ -n "$text" ]; then
         printf '%s' "$text" | wl-copy
         notify-send -a "OCR" "Text copied to clipboard" "$text"

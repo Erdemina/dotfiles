@@ -35,8 +35,8 @@ hl.window_rule({ match = { fullscreen = true }, idle_inhibit = "fullscreen" })
 -- Video/oyun içerikli pencerelerde blur kapalı
 hl.window_rule({ match = { class = "^(mpv|vlc)$" }, no_blur = true })
 
--- Duvar kağıdı seçici (wallpaper.sh pick): ortada yüzen ızgara (boyut pencerenin kendisinden)
-hl.window_rule({ match = { class = "^(hypr\\.wallpaper-picker)$" }, float = true, center = true })
+-- Duvar kağıdı / kenarlık rengi seçicileri: ortada yüzen pencere (boyut pencerenin kendisinden)
+hl.window_rule({ match = { class = "^(hypr\\.(wallpaper|border)-picker)$" }, float = true, center = true })
 
 -- hyprland-run (hyprland-guiutils) küçük çalıştırıcı
 hl.window_rule({ match = { class = "hyprland-run" }, move = { "20", "monitor_h-120" }, float = true })

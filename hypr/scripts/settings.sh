@@ -19,8 +19,31 @@ setlua() {   # setlua <file> <key> <value>  → rewrites "key = value," line
 luaflag() { grep -oE "$1\s*=\s*\{ enabled = (true|false)" "$H/lookandfeel.lua" | grep -oE 'true|false'; }
 onoff() { [ "$1" = true ] && echo on || echo off; }
 notify() { command -v notify-send >/dev/null && notify-send -a "Hyprland Settings" "$1" "${2:-}"; }
-restart_waybar() { pkill -x waybar; pkill -f "$WB/mediaplayer.py"; setsid waybar >/dev/null 2>&1 & }
+restart_waybar() { pkill -x waybar; pkill -f "$WB/mediaplayer.py"; pkill -f "$S/workspaces.py"; setsid waybar >/dev/null 2>&1 & }
 waybar_font() { grep -m1 -oE 'font-size: [0-9]+px' "$WB/style.css" | grep -oE '[0-9]+'; }
+
+# Kenarlık renk ön ayarları "Ad (c1→c2)" — gradyan c1→c2; c1 ayrıca mako/rofi/ghostty/waybar vurgu rengi olur
+BORDER_PRESETS=(
+    'Blue (89b4fa→74c7ec)'
+    'Sapphire (74c7ec→89dceb)'
+    'Teal (94e2d5→89dceb)'
+    'Green (a6e3a1→94e2d5)'
+    'Lime (a6e3a1→f9e2af)'
+    'Yellow (f9e2af→fab387)'
+    'Peach (fab387→f9e2af)'
+    'Orange (ff492a→ffd72a)'
+    'Red (f38ba8→fab387)'
+    'Pink (f5c2e7→f38ba8)'
+    'Mauve (cba6f7→f5c2e7)'
+    'Lavender (b4befe→cba6f7)'
+    'Rosewater (f5e0dc→f2cdcd)'
+    'Sunset (ff7e5f→feb47b)'
+    'Ocean (2193b0→6dd5ed)'
+    'Aurora (00c9a7→845ec2)'
+    'Neon (ff00ff→00ffff)'
+    'White (cdd6f4→bac2de)'
+    'Grey (9399b2→6c7086)'
+)
 
 row=0
 while :; do
@@ -53,16 +76,18 @@ case "$choice" in
     *Wallpaper*) "$S/wallpaper.sh" pick ;;
 
     *"Border colour"*)
-        c="$(printf 'Blue (89b4fa→74c7ec)\nOrange (ff492a→ffd72a)\nGreen (a6e3a1→94e2d5)\nPurple (cba6f7→f5c2e7)\nRed (f38ba8→fab387)\nWhite (cdd6f4→bac2de)' | submenu 'Border colour')"
-        back "$c" && continue
+        # GTK seçici (border-picker.py): gezerken canlı önizleme (hyprctl eval), Enter/tık kalıcı, Esc eskiye döner
+        cur="$(grep -m1 -oE 'active_border\s*=\s*\{ colors = \{ "rgba\([0-9a-f]{6}ee\)", "rgba\([0-9a-f]{6}' "$H/lookandfeel.lua" | grep -oE '[0-9a-f]{6}' | paste -sd '→')"
+        c="$("$S/border-picker.py" "$cur" "${BORDER_PRESETS[@]}")" || continue
         a="${c#*(}"; a="${a%)*}"; c1="${a%→*}"; c2="${a#*→}"
         sed -i -E "s|(active_border\s*=\s*\{ colors = \{ \"rgba\()[0-9a-f]{6}(ee\)\", \"rgba\()[0-9a-f]{6}|\1$c1\2$c2|" "$H/lookandfeel.lua"
         sed -i -E "s|(border_active\s*=\s*\{ colors = \{ \"rgba\()[0-9a-f]{6}(ee\)\", \"rgba\()[0-9a-f]{6}|\1$c1\2$c2|" "$H/lookandfeel.lua"
         sed -i -E "s|(outer_color = rgba\()[0-9a-f]{6}|\1$c1|; s|(check_color = rgba\()[0-9a-f]{6}|\1$c2|" "$H/hyprlock.conf"
-        sed -i -E "0,/border-color=#[0-9a-f]{6}/s|border-color=#[0-9a-f]{6}|border-color=#$c1|" "$HOME/.config/mako/config"
+        sed -i -E "0,/border-color=#[0-9a-f]{6}/s|border-color=#[0-9a-f]{6}|border-color=#$c1|; s|^(progress-color=over #)[0-9a-f]{6}|\1$c1|" "$HOME/.config/mako/config"
         sed -i -E "/#custom-power \{/,/\}/ s|^(\\s*)color: #[0-9a-f]{6}|\\1color: #$c1|" "$WB/style.css"
+        sed -i -E "/#workspaces button.active \{/,/\}/ s|linear-gradient\([0-9]+deg, #[0-9a-f]{6}, #[0-9a-f]{6}\)|linear-gradient(120deg, #$c1, #$c2)|" "$WB/style.css"   # aktif çalışma alanı karesi
         sed -i -E "s|^(cursor-color\s*=\s*)#[0-9a-f]{6}|\1#$c1|; s|^(selection-foreground\s*=\s*)#[0-9a-f]{6}|\1#$c1|; s|^(split-divider-color\s*=\s*)#[0-9a-f]{6}|\1#$c1|" "$HOME/.config/ghostty/config"
-        sed -i -E "s|^(\s*w-border-color:\s*)#[0-9a-fA-F]{6}|\1#$c1|; s|^(\s*hl-color:\s*)#[0-9a-fA-F]{6}|\1#$c1|" "$HOME/.config/rofi/config.rasi"
+        sed -i -E "s|^(\s*w-border-color:\s*)#[0-9a-fA-F]{6}|\1#$c1|; s|^(\s*hl-color:\s*)#[0-9a-fA-F]{6}|\1#$c1|; s|^(\s*hl-bg-color:\s*)#[0-9a-fA-F]{6}|\1#$c1|" "$HOME/.config/rofi/config.rasi"
         makoctl reload 2>/dev/null; restart_waybar
         notify "Border colour: $c" ;;
 

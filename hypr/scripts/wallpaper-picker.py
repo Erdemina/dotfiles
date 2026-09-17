@@ -25,19 +25,32 @@ THUMB_W, THUMB_H = 256, 144
 COLUMNS = 4
 PREVIEW_DELAY_MS = 40          # tuşa basılı tutarken her kareyi yüklememek için (küçük tutuluyor)
 
-CSS = b"""
-window { background-color: rgba(0, 0, 0, 0.82); border: 2px solid #89b4fa; border-radius: 10px; }
-* { font-family: "Noto Sans"; }
-entry { background-color: rgba(30, 30, 30, 0.9); color: #ffffff; border: 0; border-radius: 6px;
-        padding: 6px 10px; font-size: 13px; margin: 6px 6px 0 6px; caret-color: #89b4fa; }
-flowboxchild { border-radius: 8px; padding: 6px; color: #ffffff; }
-flowboxchild:hover { background-color: #111111; }
-flowboxchild:selected { background-color: #89b4fa; color: #11111b; }
-.thumb { border-radius: 4px; }
-.name { font-size: 12px; }
-.name.current { font-weight: bold; }
-scrolledwindow { border: 0; }
-"""
+def accent():
+    """lookandfeel.lua'daki active_border'ın ilk rengi → (hex, r, g, b, açılmış hex)"""
+    import re
+    try:
+        lua = open(os.path.expanduser("~/.config/hypr/lookandfeel.lua")).read()
+        c1 = re.search(r'active_border\s*=\s*\{ colors = \{ "rgba\(([0-9a-fA-F]{6})', lua).group(1)
+    except Exception:
+        c1 = "89b4fa"
+    r, g, b = (int(c1[i:i + 2], 16) for i in (0, 2, 4))
+    bright = "%02x%02x%02x" % tuple(round(c + (255 - c) * 0.25) for c in (r, g, b))
+    return c1, r, g, b, bright
+
+ACCENT, AR, AG, AB, ACCENT_BRIGHT = accent()
+CSS = f"""
+window {{ background-color: rgba(0, 0, 0, 0.82); border: 2px solid #{ACCENT}; border-radius: 10px; }}
+* {{ font-family: "Noto Sans"; }}
+entry {{ background-color: rgba(30, 30, 30, 0.9); color: #ffffff; border: 0; border-radius: 6px;
+        padding: 6px 10px; font-size: 13px; margin: 6px 6px 0 6px; caret-color: #{ACCENT}; }}
+flowboxchild {{ border-radius: 8px; padding: 6px; color: #ffffff; }}
+flowboxchild:hover {{ background-color: #111111; }}
+flowboxchild:selected {{ background-color: rgba({AR}, {AG}, {AB}, 0.15); color: #{ACCENT_BRIGHT}; font-weight: bold; }}
+.thumb {{ border-radius: 4px; }}
+.name {{ font-size: 12px; }}
+.name.current {{ font-weight: bold; }}
+scrolledwindow {{ border: 0; }}
+""".encode()
 
 
 def thumb_path(path):
