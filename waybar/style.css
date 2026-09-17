@@ -115,6 +115,7 @@ window#waybar.hidden {
 }
 
 #window,
+#custom-workspaces,
 #workspaces {
   border-radius: 20px;
   padding: 0px 10px;
@@ -323,4 +324,10 @@ label:focus {
 }
 #network {
   min-width: 150px;
+}
+
+#custom-workspaces {
+  color: #cdd6f4;
+  padding: 0px 8px;
+  font-size: 12px;
 }

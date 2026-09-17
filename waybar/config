@@ -16,7 +16,7 @@
     "spacing": 5, // Gaps between modules (4px)
 
     "modules-left": [
-        "hyprland/workspaces",
+        "custom/workspaces",
         //"idle_inhibitor",
         //"mpd",
         "custom/media"
@@ -216,6 +216,16 @@
         "exec": "$HOME/.config/waybar/get_kbdlayout.sh"
     },*/
 
+    "custom/workspaces": {
+        "exec": "~/.config/hypr/scripts/workspaces.py",
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+        "on-click-right": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+        "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+        "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'"
+    },
     "hyprland/workspaces": {
         "on-click": "activate",
         "tooltip": false,
