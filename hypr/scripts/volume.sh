@@ -4,7 +4,7 @@
 # Hızlı olsun diye: tek wpctl sorgusu, python yok (tuşa basılı tutunca ~25 tekrar/sn geliyor)
 set -u
 SND=/usr/share/sounds/ocean/stereo/audio-volume-change.oga
-osd() { notify-send -a Volume -h string:x-canonical-private-synchronous:volume -t 1200 -i "$1" "$2" "${3:-}"; }
+osd() { notify-send -a Volume -h string:x-canonical-private-synchronous:volume -t 1200 -i "$1" "$2" "${3:-}" & }   # beklemeden devam
 bar() {   # bar <yüzde> → ▰▰▰▱▱ (150% = tam)
     local n=$(( ($1 * 15 + 75) / 150 )) s=""; [ $n -gt 15 ] && n=15
     for ((i = 0; i < 15; i++)); do [ $i -lt $n ] && s+="▰" || s+="▱"; done

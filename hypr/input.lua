@@ -5,6 +5,8 @@ hl.config({
         kb_model   = "pc105",
         kb_options = "",
         numlock_by_default = true,
+        repeat_delay = 300,       -- tuş tekrarı erken başlasın (varsayılan 600 ms)
+        repeat_rate  = 35,        -- saniyede tekrar (varsayılan 25)
 
         follow_mouse = 1,
         sensitivity  = 0,

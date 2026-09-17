@@ -23,7 +23,7 @@ WALLPAPER_SH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wallpap
 CACHE = os.path.join(GLib.get_user_cache_dir(), "wallpaper-picker")
 THUMB_W, THUMB_H = 256, 144
 COLUMNS = 4
-PREVIEW_DELAY_MS = 90          # tuşa basılı tutarken her kareyi yüklememek için
+PREVIEW_DELAY_MS = 40          # tuşa basılı tutarken her kareyi yüklememek için (küçük tutuluyor)
 
 CSS = b"""
 window { background-color: rgba(0, 0, 0, 0.82); border: 2px solid #89b4fa; border-radius: 10px; }
