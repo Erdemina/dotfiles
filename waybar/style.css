@@ -323,7 +323,46 @@ label:focus {
   background-color: #1e1e1e;
 }
 #network {
-  min-width: 150px;
+  min-width: 120px;
+}
+
+/* ---- Gruplar: her kategori tek balon, içindeki modüller şeffaf ---- */
+#env,
+#system,
+#net,
+#pwr {
+  border-radius: 20px;
+  background-color: #1e1e1e;
+  padding: 0 6px;
+  margin: 0.2em 0.3em;
+}
+
+#env > widget > *,
+#system > widget > *,
+#net > widget > *,
+#pwr > widget > * {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0 7px;
+  margin: 0;
+}
+
+/* Gruplar arasında ince ayırıcı çizgi */
+#env > widget:not(:first-child) > *,
+#system > widget:not(:first-child) > *,
+#net > widget:not(:first-child) > *,
+#pwr > widget:not(:first-child) > * {
+  border-left: 1px solid #333333;
+  border-radius: 0;
+}
+
+/* Grup içi kritik durumlar arka planı grubun içinde kalsın */
+#system > widget > #temperature.critical {
+  background-color: transparent;
+  color: #eb4d4b;
+}
+#pwr > widget > #idle_inhibitor.activated {
+  background-color: transparent;
 }
 
 #custom-workspaces {

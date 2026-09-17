@@ -52,7 +52,7 @@ def on_metadata(player, metadata, manager):
     if len(track_info) > MAX_LEN:
         track_info = track_info[:MAX_LEN - 1].rstrip() + '…'
     if player.props.status != 'Playing' and track_info:
-        track_info = track_info + '  ' + ''      # duraklat ikonu modülün en sağında
+        track_info = track_info + '  ' + ''      # duraklat ikonu modülün en sağında
     write_output(track_info, player)
 
 

@@ -17,28 +17,38 @@
 
     "modules-left": [
         "custom/workspaces",
-        //"idle_inhibitor",
-        //"mpd",
-        "custom/media"
+        "custom/media",
+        "group/env"       // hava · parlaklık · ses
     ],
     "modules-center": [
-        "clock#date",
-        "custom/weather"
+        "clock#date"
     ],
     "modules-right": [
-        "backlight",
-        "temperature",
-        "memory",
-        "cpu",
-	"network",
-        "idle_inhibitor",
-        "custom/powerprofile",
-        "battery",
-        "pulseaudio",
-        //"custom/screenshot_t",
-        "tray",
+        "group/system",   // cpu · bellek · sıcaklık
+        "group/net",  // ağ · tray
+        "group/pwr",    // pil · güç profili · idle · güç menüsü
         "custom/power"
     ],
+
+    // -------------------------------------------------------------------------
+    // Groups (kategoriler — her grup tek balon)
+    // -------------------------------------------------------------------------
+    "group/env": {
+        "orientation": "horizontal",
+        "modules": ["custom/weather", "backlight", "pulseaudio"]
+    },
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": ["cpu", "memory", "temperature"]
+    },
+    "group/net": {
+        "orientation": "horizontal",
+        "modules": ["network", "tray"]
+    },
+    "group/pwr": {
+        "orientation": "horizontal",
+        "modules": ["battery", "custom/powerprofile", "idle_inhibitor"]
+    },
 
 
     // -------------------------------------------------------------------------
