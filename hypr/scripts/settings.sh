@@ -47,6 +47,7 @@ case "$choice" in
         sed -i -E "0,/border-color=#[0-9a-f]{6}/s|border-color=#[0-9a-f]{6}|border-color=#$c1|" "$HOME/.config/mako/config"
         sed -i -E "/#custom-power \{/,/\}/ s|color: #[0-9a-f]{6}|color: #$c1|" "$HOME/.config/waybar/style.css"
         sed -i -E "s|^(cursor-color\s*=\s*)#[0-9a-f]{6}|\1#$c1|; s|^(selection-foreground\s*=\s*)#[0-9a-f]{6}|\1#$c1|; s|^(split-divider-color\s*=\s*)#[0-9a-f]{6}|\1#$c1|" "$HOME/.config/ghostty/config"
+        sed -i -E "s|^(\s*w-border-color:\s*)#[0-9a-fA-F]{6}|\1#$c1|; s|^(\s*hl-color:\s*)#[0-9a-fA-F]{6}|\1#$c1|" "$HOME/.config/rofi/config.rasi"
         makoctl reload 2>/dev/null; restart_waybar
         notify "Border colour: $c" ;;
 

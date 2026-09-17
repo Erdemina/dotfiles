@@ -31,6 +31,7 @@
         "memory",
         "cpu",
 	"network",
+        "idle_inhibitor",
         "custom/powerprofile",
         "battery",
         "pulseaudio",
@@ -68,8 +69,6 @@
         "format-critical": "  {temperatureC}°C",
         "format": "{icon}  {temperatureC}°C",
         "format-icons": ["", "", ""],
-        "max-length": 7,
-        "min-length": 7,
         "on-click": "xsensors"
     },
 
@@ -101,19 +100,17 @@
         ]
     },
     "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": "⬇{bandwidthDownBytes} ⬆{bandwidthUpBytes}",
-	"interval": 1,
+        "format-wifi": "  {bandwidthDownBytes}   {bandwidthUpBytes}",
+        "format-ethernet": "  {bandwidthDownBytes}   {bandwidthUpBytes}",
+        "interval": 1,
         "format-linked": "{ifname} (No IP) ",
         "format": "",
-        "format-disconnected": "",
+        "format-disconnected": "󰤭  offline",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
         "tooltip-format": "Network: {ifname}\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}\nClick: copy IP",
         "tooltip-format-wifi": "Wi-Fi: {essid} ({frequency} MHz)\nSignal: {signaldBm} dBm (%{signalStrength})\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}\nClick: copy IP",
-        "tooltip-format-disconnected": "No network connection",
-	"min-length": 17,
-	"max-length": 17
+        "tooltip-format-disconnected": "No network connection"
     },
 
     "backlight": {
@@ -131,10 +128,12 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "󰅶",
+            "deactivated": "󰾪"
         },
-        "tooltip": "true"
+        "tooltip": true,
+        "tooltip-format-activated": "Caffeine ON — screen will not lock or sleep\nClick: turn off",
+        "tooltip-format-deactivated": "Caffeine OFF — normal idle/lock\nClick: keep awake"
     },
     "custom/weather": {
         "tooltip-format": "Weather (Istanbul, wttr.in)\nClick: open forecast in browser",
@@ -174,7 +173,7 @@
     "custom/power": {
         "tooltip": true,
         "tooltip-format": "Power menu (lock / log out / suspend / reboot / shut down)",
-        "format": "",
+        "format": "󰐥",
         "on-click": "~/.config/hypr/scripts/powermenu.sh"
     },
 
@@ -220,6 +219,7 @@
     "hyprland/workspaces": {
         "on-click": "activate",
         "tooltip": false,
+        "persistent-workspaces": { "*": 5 },
         "format": "{id}",
         "all-outputs": true,
         "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",

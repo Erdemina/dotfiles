@@ -26,6 +26,7 @@ hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(powermenu), { description = "Powe
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd(scripts .. "/wallpaper.sh pick"), { description = "Wallpaper picker (synced with KDE)" })
 hl.bind(mod .. " + SHIFT + N", hl.dsp.exec_cmd("makoctl dismiss --all"), { description = "Dismiss notifications" })
 hl.bind(mod .. " + I",         hl.dsp.exec_cmd(scripts .. "/settings.sh"), { description = "Hyprland settings menu" })
+hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd(scripts .. "/mymenu.sh"),   { description = "My Menu (own scripts + tools)" })
 
 -- ── Screenshot / OCR / recording (Spectacle KWin istiyor → grim+satty+tesseract) ─
 local shot = scripts .. "/screenshot.sh"
@@ -107,11 +108,12 @@ hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" 
 
 -- ── Medya / parlaklık (kilit ekranında da çalışır) ───────────────────────
 local held = { locked = true, repeating = true }
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"), held)
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),        held)
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),       { locked = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),     { locked = true })
-hl.bind(mod .. " + XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),  { locked = true, description = "Mute microphone" })
+local volume = scripts .. "/volume.sh"
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(volume .. " up"),   held)
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(volume .. " down"), held)
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd(volume .. " mute"), { locked = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd(volume .. " mic"),  { locked = true })
+hl.bind(mod .. " + XF86AudioMute", hl.dsp.exec_cmd(volume .. " mic"), { locked = true, description = "Mute microphone" })
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), held)
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), held)
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })

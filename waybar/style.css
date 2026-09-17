@@ -296,11 +296,23 @@ label:focus {
 
 #custom-power {
   padding: 0px 12px;
-  color: #f38ba8;
+  color: #89b4fa;
   border-radius: 20px;
-  background-color: #f38ba8;
+  background-color: #89b4fa;
 }
 
 #custom-powerprofile {
   color: #a6e3a1;
+}
+
+#idle_inhibitor {
+  color: #6c7086;
+  background-color: #1e1e1e;
+}
+#idle_inhibitor.activated {
+  color: #f9e2af;
+  background-color: #1e1e1e;
+}
+#network {
+  min-width: 150px;
 }

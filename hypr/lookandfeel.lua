@@ -5,7 +5,7 @@ hl.config({
         gaps_out    = 12,
         border_size = 2,
         col = {
-            active_border   = { colors = { "rgba(f38ba8ee)", "rgba(fab387ee)" }, angle = 30 },
+            active_border   = { colors = { "rgba(89b4faee)", "rgba(74c7ecee)" }, angle = 30 },
             inactive_border = "rgba(595959aa)",
         },
         resize_on_border = true,
@@ -39,7 +39,7 @@ hl.config({
     -- Grup çubuğu (Meta+G ile sekmeli pencere grubu)
     group = {
         col = {
-            border_active   = { colors = { "rgba(f38ba8ee)", "rgba(fab387ee)" }, angle = 30 },
+            border_active   = { colors = { "rgba(89b4faee)", "rgba(74c7ecee)" }, angle = 30 },
             border_inactive = "rgba(595959aa)",
         },
         groupbar = { font_size = 10, gradients = false },

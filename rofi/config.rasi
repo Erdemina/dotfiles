@@ -7,12 +7,12 @@
     fgp-color: #888888FF;
     b-radius: 8px;
     g-padding: 8px;
-    hl-color: #FFFFFFFF;
-    hlt-color: #000000FF;
+    hl-color: #89b4faFF;
+    hlt-color: #11111bFF;
     alt-color: #111111FF;
     wbg-color: #000000CC;
     w-border: 2px solid;
-    w-border-color: #FFFFFFFF;
+    w-border-color: #89b4faFF;   /* accent — settings.sh "Border colour" updates this */
     w-padding: 12px;
 }
 

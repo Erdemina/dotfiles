@@ -6,7 +6,7 @@
 
 # ── Yazı tipi ────────────────────────────────────────────────
 font-family        = JetBrainsMono Nerd Font
-font-size          = 10
+font-size          = 9
 font-thicken       = true
 font-feature       = calt
 font-feature       = liga
@@ -18,11 +18,11 @@ bold-is-bright     = true
 theme               = Catppuccin Mocha
 background          = #11111b
 foreground          = #cdd6f4
-cursor-color        = #f38ba8
+cursor-color        = #89b4fa
 cursor-text         = #11111b
 selection-background = #45475a
-selection-foreground = #f38ba8
-split-divider-color = #f38ba8
+selection-foreground = #89b4fa
+split-divider-color = #89b4fa
 minimum-contrast    = 1.1
 
 # ── Saydamlık / blur (Hyprland blur'u da uygular) ───────────
