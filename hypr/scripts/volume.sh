@@ -5,7 +5,7 @@ set -u
 SND=/usr/share/sounds/ocean/stereo/audio-volume-change.oga
 osd() {   # osd <title> <percent> <icon>
     local p="$2" bar; bar="$(python3 -c "p=int($p); n=round(min(p,150)/10); print('▰'*n+'▱'*(15-n))")"
-    notify-send -a Volume -r 9991 -t 1200 -i "$3" "$1" "$bar  $p%"
+    notify-send -a Volume -h string:x-canonical-private-synchronous:volume -t 1200 -i "$3" "$1" "$bar  $p%"
 }
 vol() { wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%d", $2*100}'; }
 case "${1:-}" in
@@ -13,13 +13,13 @@ case "${1:-}" in
     down) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
     mute) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
     mic)  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-          if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED; then notify-send -a Volume -r 9992 -t 1200 -i microphone-sensitivity-muted "Microphone muted"
-          else notify-send -a Volume -r 9992 -t 1200 -i microphone-sensitivity-high "Microphone on"; fi
+          if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED; then notify-send -a Volume -h string:x-canonical-private-synchronous:volume -t 1200 -i microphone-sensitivity-muted "Microphone muted"
+          else notify-send -a Volume -h string:x-canonical-private-synchronous:volume -t 1200 -i microphone-sensitivity-high "Microphone on"; fi
           exit 0 ;;
     *) echo "usage: $0 up|down|mute|mic"; exit 1 ;;
 esac
 if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED; then
-    notify-send -a Volume -r 9991 -t 1200 -i audio-volume-muted "Muted"
+    notify-send -a Volume -h string:x-canonical-private-synchronous:volume -t 1200 -i audio-volume-muted "Muted"
 else
     v="$(vol)"; icon=audio-volume-high; [ "$v" -lt 66 ] && icon=audio-volume-medium; [ "$v" -lt 33 ] && icon=audio-volume-low
     osd "Volume" "$v" "$icon"

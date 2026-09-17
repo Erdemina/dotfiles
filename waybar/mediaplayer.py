@@ -3,12 +3,16 @@ import argparse
 import logging
 import sys
 import signal
+import os
 import gi
 import json
 gi.require_version('Playerctl', '2.0')
 from gi.repository import Playerctl, GLib
 
 logger = logging.getLogger(__name__)
+
+
+MAX_LEN = 38      # waybar'da max-length yok: kısaltma burada, duraklat ikonu hep sonda kalsın
 
 
 def write_output(text, player):
@@ -18,8 +22,12 @@ def write_output(text, player):
               'class': 'custom-' + player.props.player_name,
               'alt': player.props.player_name}
 
-    sys.stdout.write(json.dumps(output) + '\n')
-    sys.stdout.flush()
+    try:
+        sys.stdout.write(json.dumps(output) + '\n')
+        sys.stdout.flush()
+    except BrokenPipeError:
+        # waybar kapandı (pkill waybar bizi öldürmez) → sessizce çık, yetim süreç bırakma
+        sys.exit(0)
 
 
 def on_play(player, status, manager):
@@ -41,8 +49,10 @@ def on_metadata(player, metadata, manager):
     else:
         track_info = player.get_title()
 
+    if len(track_info) > MAX_LEN:
+        track_info = track_info[:MAX_LEN - 1].rstrip() + '…'
     if player.props.status != 'Playing' and track_info:
-        track_info = ' ' + track_info
+        track_info = track_info + '  ' + ''      # duraklat ikonu modülün en sağında
     write_output(track_info, player)
 
 
@@ -70,10 +80,13 @@ def init_player(manager, name):
 
 def signal_handler(sig, frame):
     logger.debug('Received signal to stop, exiting')
-    sys.stdout.write('\n')
-    sys.stdout.flush()
+    try:
+        sys.stdout.write('\n')
+        sys.stdout.flush()
+    except BrokenPipeError:
+        pass
     # loop.quit()
-    sys.exit(0)
+    os._exit(0)
 
 
 def parse_arguments():
@@ -110,6 +123,14 @@ def main():
 
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
+
+    # Ebeveyn (waybar'ın sh'ı) ölürse biz de çıkalım
+    def check_parent():
+        if os.getppid() == 1:
+            logger.debug('Parent gone, exiting')
+            sys.exit(0)
+        return True
+    GLib.timeout_add_seconds(5, check_parent)
 
     for player in manager.props.player_names:
         if arguments.player is not None and arguments.player != player.name:

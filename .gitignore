@@ -1,3 +1,4 @@
 # generated at runtime by hypr/scripts/wallpaper.sh
 hypr/hyprpaper.conf
 hypr/wallpaper.conf
+__pycache__/

@@ -14,6 +14,8 @@ layer=overlay
 icons=1
 max-icon-size=48
 icon-path=/usr/share/icons/breeze-dark:/usr/share/icons/breeze
+# sorun ayıklama: makoctl history
+max-history=50
 
 [urgency=high]
 border-color=#74c7ec

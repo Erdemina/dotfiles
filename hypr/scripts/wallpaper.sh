@@ -4,7 +4,8 @@
 #   wallpaper.sh current      -> KDE masaüstü duvar kağıdı yolunu yazdırır
 #   wallpaper.sh apply        -> KDE'deki duvar kağıdını hyprpaper'a uygular (Hyprland açılışında)
 #   wallpaper.sh set <dosya>  -> hem KDE (masaüstü + kilit ekranı) hem Hyprland'e uygular
-#   wallpaper.sh pick         -> rofi ile seçtir, sonra set
+#   wallpaper.sh pick         -> küçük resim ızgarası (wallpaper-picker.py), gezerken canlı önizleme;
+#                                Enter/tık kalıcı yapar, Esc eskiye döner
 set -u
 APPLETSRC="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
 LOCKRC="$HOME/.config/kscreenlockerrc"
@@ -62,6 +63,18 @@ write_hyprpaper_conf() {
     printf '$wallpaper = %s\n' "$1" > "$HOME/.config/hypr/wallpaper.conf"   # hyprlock için
 }
 
+preview_hypr() {   # sadece IPC, dosyalara yazmaz (canlı önizleme)
+    for mon in $(hyprctl monitors -j | python3 -c 'import json,sys; print(" ".join(m["name"] for m in json.load(sys.stdin)))'); do
+        hyprctl hyprpaper wallpaper "$mon, $1, cover" >/dev/null 2>&1
+    done
+}
+
+list_files() {
+    for d in "${WALL_DIRS[@]}"; do
+        [ -d "$d" ] && find "$d" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \)
+    done | sort
+}
+
 apply_hypr() {
     local img="$1"
     write_hyprpaper_conf "$img"
@@ -101,11 +114,21 @@ case "${1:-}" in
         apply_kde "$img"
         if [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then apply_hypr "$img"; fi
         ;;
+    preview) preview_hypr "$(realpath -e "${2:?}")" ;;
+
     pick)
-        choice="$(for d in "${WALL_DIRS[@]}"; do [ -d "$d" ] && find "$d" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) ; done \
-            | sort | while read -r f; do printf '%s\0icon\x1f%s\n' "$f" "$f"; done \
-            | rofi -dmenu -i -p "Wallpaper" -show-icons)"
-        [ -n "$choice" ] && exec "$0" set "$choice"
+        # Küçük resim ızgarası (GTK, wallpaper-picker.py): gezerken canlı önizleme, Enter/tık kalıcı, Esc eskiye döner
+        mapfile -t files < <(list_files)
+        [ "${#files[@]}" -eq 0 ] && { notify-send -a Wallpaper "Duvar kağıdı bulunamadı" "${WALL_DIRS[*]}"; exit 1; }
+        cur="$(current)"
+        if [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
+            # Boş çalışma alanına geç ki duvar kağıdı pencerelerin arkasında kalmasın; bitince geri dön
+            prev="$(hyprctl activeworkspace -j | python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])')"
+            hyprctl dispatch 'hl.dsp.focus({ workspace = "empty" })' >/dev/null
+            trap 'hyprctl dispatch "hl.dsp.focus({ workspace = $prev })" >/dev/null' EXIT
+        fi
+        "$(dirname "$0")/wallpaper-picker.py" "$cur" "${files[@]}" || preview_hypr "$cur"   # vazgeçildi → eskisi
         ;;
-    *) echo "kullanım: $0 current|apply|set <dosya>|pick"; exit 1 ;;
+
+    *) echo "kullanım: $0 current|apply|set <dosya>|pick|preview <dosya>"; exit 1 ;;
 esac
