@@ -30,7 +30,7 @@ theme and the KDE apps you already use.
 | Files / auth / tray | Dolphin, polkit-kde-agent, KDE Connect, nm-applet, blueman | |
 | Qt theming | `QT_QPA_PLATFORMTHEME=kde` | Qt apps read your `kdeglobals` → Breeze Dark, icons, fonts identical to Plasma |
 | Secrets | Secret portal → **KWallet** (`xdg-desktop-portal/hyprland-portals.conf`) | Chromium-based browsers keep their cookies/passwords — no re-login when switching from Plasma |
-| Settings | `Meta+I` rofi menu (`hypr/scripts/settings.sh`) | wallpaper, border colour, gaps, blur, animations, keyboard layout, power profile, edit configs, sync to dotfiles |
+| Settings | `Meta+I` rofi menu (`hypr/scripts/settings.sh`) | display layout, per-output refresh rate and Waybar visibility first; wallpaper, border colour, gaps, blur, animations, keyboard layout, power profile, edit configs, sync to dotfiles |
 
 Look: blue→sky gradient borders, 12px gaps, rounding 10, light blur.
 
@@ -75,6 +75,17 @@ Priority: custom shortcuts from my KDE setup → KDE defaults → old dotfiles.
 | 3-finger swipe | workspaces (horizontal), fullscreen (up), close (down) |
 
 `hyprctl binds` lists everything with descriptions.
+
+## Display layout
+
+`Meta+I` → **Displays**: drag screens above, below or beside each other. Nearby
+edges snap together. Select each screen to choose a supported resolution/refresh
+rate and whether Waybar appears there (at least one screen must retain Waybar).
+**Apply** writes the positions/modes to `~/.config/hypr/monitors.lua` and Waybar's
+output list to `~/.config/waybar/config`, then reloads the session. **Cancel**
+leaves both unchanged. Disconnected outputs use the existing `preferred/auto`
+fallback until connected and configured. Use **Save to dotfiles** in Settings
+to copy your choices into the repository.
 
 ## Wallpaper sync — how it works
 

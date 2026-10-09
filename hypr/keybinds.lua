@@ -83,6 +83,29 @@ hl.bind(mod .. " + mouse:272", function() dragging = false end, { release = true
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+-- monitors.lua returns the active sticky-screen assignments, if any.
+local sticky_monitors = require("monitors")
+function focus_workspace(target)
+    if type(sticky_monitors) == "table" then
+        for name, workspace in pairs(sticky_monitors) do
+            if target == workspace then
+                hl.dispatch(hl.dsp.focus({ monitor = name }))
+                return
+            end
+        end
+        local active = hl.get_active_monitor()
+        if active and sticky_monitors[active.name] then
+            for _, monitor in ipairs(hl.get_monitors()) do
+                if not sticky_monitors[monitor.name] then
+                    hl.dispatch(hl.dsp.focus({ monitor = monitor.name }))
+                    break
+                end
+            end
+        end
+    end
+    hl.dispatch(hl.dsp.focus({ workspace = target }))
+end
+
 -- ── Çalışma alanları (KDE özel: Meta+1..6 masaüstü) ─────────────────────
 for i = 1, 10 do
     local key = i % 10
@@ -91,16 +114,16 @@ for i = 1, 10 do
             dragging = false
             hl.dispatch(hl.dsp.window.move({ workspace = i, follow = true }))
         else
-            hl.dispatch(hl.dsp.focus({ workspace = i }))
+            focus_workspace(i)
         end
     end, { description = "Workspace " .. i .. " (while dragging: move window there)" })
     hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
     hl.bind(mod .. " + ALT + " .. key,   hl.dsp.window.move({ workspace = i, follow = true }))
 end
-hl.bind(mod .. " + CTRL + left",  hl.dsp.focus({ workspace = "e-1" }), { description = "Previous workspace" })
-hl.bind(mod .. " + CTRL + right", hl.dsp.focus({ workspace = "e+1" }), { description = "Next workspace" })
-hl.bind(mod .. " + mouse_down",   hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mod .. " + mouse_up",     hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mod .. " + CTRL + left",  function() focus_workspace("e-1") end, { description = "Previous workspace" })
+hl.bind(mod .. " + CTRL + right", function() focus_workspace("e+1") end, { description = "Next workspace" })
+hl.bind(mod .. " + mouse_down",   function() focus_workspace("e+1") end)
+hl.bind(mod .. " + mouse_up",     function() focus_workspace("e-1") end)
 
 -- Scratchpad (dotfiles)
 hl.bind(mod .. " + S",         hl.dsp.workspace.toggle_special("magic"), { description = "Toggle scratchpad" })

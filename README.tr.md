@@ -30,7 +30,7 @@ KDE uygulamalarını paylaşır.
 | Dosya / yetki / tepsi | Dolphin, polkit-kde-agent, KDE Connect, nm-applet, blueman | |
 | Qt teması | `QT_QPA_PLATFORMTHEME=kde` | Qt uygulamaları `kdeglobals`'ı okur → Breeze Dark, ikonlar, fontlar Plasma ile birebir |
 | Gizli anahtarlar | Secret portal → **KWallet** (`xdg-desktop-portal/hyprland-portals.conf`) | Chromium tabanlı tarayıcılar çerez/parolalarını korur — Plasma'dan geçince tekrar giriş yok |
-| Ayarlar | `Meta+I` rofi menüsü (`hypr/scripts/settings.sh`) | duvar kağıdı, kenarlık rengi, boşluk, blur, animasyon, klavye düzeni, güç profili, config düzenle, dotfiles'a kaydet |
+| Ayarlar | `Meta+I` rofi menüsü (`hypr/scripts/settings.sh`) | ilk sırada ekran düzeni, ekran başına Hz ve Waybar seçimi; ayrıca duvar kağıdı, kenarlık rengi, boşluk, blur, animasyon, klavye düzeni, güç profili, config düzenle, dotfiles'a kaydet |
 
 Görünüm: mavi→gök mavisi gradient kenarlık, 12px boşluk, 10px yuvarlatma, hafif blur.
 
@@ -75,6 +75,35 @@ CachyOS veya Arch, KDE Plasma 6 kurulu, Wayland. Hyprland ≥ 0.55 (Lua config).
 | 3 parmak kaydırma | çalışma alanı (yatay), tam ekran (yukarı), kapat (aşağı) |
 
 `hyprctl binds` hepsini açıklamalarıyla listeler.
+
+## Ekran düzeni
+
+`Meta+I` → **Displays**: ekranları fareyle sürükleyip üste, alta veya yana yerleştir.
+Yakın kenarlar hizalanır; her ekranı seçip desteklediği çözünürlük/Hz modunu ve
+Waybar'ın o ekranda görünüp görünmeyeceğini ayarla; tüm ekranlarda kapatabilirsin.
+**Uygula** konumları ve modları `~/.config/hypr/monitors.lua` içine yazar.
+Waybar seçimi ekran kombinasyonu başına `~/.local/state/hypr/display-waybar.json`
+dosyasında saklanır. Ekran takılıp çıkarılınca ve oturum açılınca seçilen
+kombinasyonun Waybar ayarı otomatik geri gelir; ilk kez görülen kombinasyonda
+Waybar bütün ekranlarda açıktır. Eski Waybar seçimi ilk çalıştırmada taşınır.
+**Vazgeç** hiçbir şeyi değiştirmez. Açılışta bağlı olmayan ekranlar genel
+`preferred/auto` kuralını kullanır. Değişiklikleri repoya almak için ayarlar
+menüsündeki **Save to dotfiles**'ı kullan; Waybar tercihleri yerel durum
+dosyasında kalır.
+
+Her ekran için **Çalışma alanı** listesinden `Serbest (mevcut davranış)` veya
+`Yapışkan yan ekran (hep görünür)` seçebilirsin. Yapışkan mod, seçilen ekranın
+mevcut görüntüsünü korur: harici ekranda 2–5 arasında geçerken laptop ekranı
+ve üzerine fareyle sürükleyip bıraktığın pencereler yerinde kalır. Ayrı bir
+masaüstü açman ya da sayı seçmen gerekmez. Hyprland her ekrana teknik olarak
+bir çalışma alanı atar; uygulama bu numarayı içeride saklar. `Meta+N`,
+önceki/sonraki alan ve Waybar kaydırması, odak yan ekranda olsa bile serbest
+ekranın alanını değiştirir. Doğrudan Hyprland komutlarıyla yan ekranın alanını
+değiştirmek hâlâ mümkündür (ekran kilidi değil). Seçim ekran kombinasyonu başına
+`~/.local/state/hypr/display-workspaces.json` dosyasında saklanır; ekran
+çıkarılıp geri takıldığında ilgili kombinasyon geri yüklenir. Bağlı olmayan
+ekranların kuralları kaldırılır; `Serbest` seçimi eski davranışı korur. Ayar
+Spotify'ı kendiliğinden başlatmaz; penceresini fareyle yan ekrana taşıyabilirsin.
 
 ## Duvar kağıdı senkronu nasıl çalışıyor
 

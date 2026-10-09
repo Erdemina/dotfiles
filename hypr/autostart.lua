@@ -6,7 +6,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sleep 1; systemctl --user restart xdg-desktop-portal-hyprland.service xdg-desktop-portal.service")
 
     hl.exec_cmd(scripts .. "/wallpaper.sh apply")          -- KDE'deki duvar kağıdı → hyprpaper
-    hl.exec_cmd("waybar")
+    hl.exec_cmd(scripts .. "/display-settings.py --watch") -- bağlı ekranlara göre Waybar'ı başlat ve güncelle
     hl.exec_cmd("mako")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")  -- KDE'nin yetki penceresi

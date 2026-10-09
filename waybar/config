@@ -230,10 +230,10 @@
         "return-type": "json",
         "format": "{}",
         "tooltip": true,
-        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
-        "on-click-right": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
-        "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
-        "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'"
+        "on-click": "hyprctl eval 'focus_workspace(\"e+1\")'",
+        "on-click-right": "hyprctl eval 'focus_workspace(\"e-1\")'",
+        "on-scroll-up": "hyprctl eval 'focus_workspace(\"e-1\")'",
+        "on-scroll-down": "hyprctl eval 'focus_workspace(\"e+1\")'"
     },
     "hyprland/workspaces": {
         "on-click": "activate",

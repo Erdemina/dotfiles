@@ -48,6 +48,7 @@ BORDER_PRESETS=(
 row=0
 while :; do
 items=(
+    "󰍹  Displays (layout / Hz / Waybar / sticky)"
     "󰸉  Wallpaper"
     "󰏘  Border colour"
     "󰁌  Gaps"
@@ -56,7 +57,6 @@ items=(
     "󰑮  Animations: $(onoff "$(luaflag animations)")"
     "󰌌  Keyboard layout"
     "󰓅  Power profile"
-    "󰍹  Monitors (edit file)"
     "󰌌  Show keybindings"
     "󰕾  Audio (pavucontrol)"
     "󰤨  Network (nm-connection-editor)"
@@ -127,7 +127,7 @@ case "$choice" in
         notify "Keyboard layout: $l" ;;
 
     *"Power profile"*) "$S/powerprofile.sh" ;;
-    *Monitors*) edit "$H/monitors.lua"; exit 0 ;;
+    *Displays*) "$S/display-settings.py"; exit 0 ;;
 
     *keybindings*)
         hyprctl binds -j | python3 -c '
