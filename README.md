@@ -76,6 +76,19 @@ Priority: custom shortcuts from my KDE setup → KDE defaults → old dotfiles.
 
 `hyprctl binds` lists everything with descriptions.
 
+Lock commands run through `systemd-cat`. Read Hyprlock output with
+`journalctl --user -t hyprlock -b`; use `-b -1` for the previous boot.
+Hypridle waits for the session-lock notification before sleep with `inhibit_sleep = 3`.
+Before requesting the lock, Hypridle turns the displays off to hide the lock-screen
+transition. It still requests the lock if display blanking fails. After wake,
+it turns the displays back on; the session-lock wait remains enabled.
+These settings and logging do not by themselves establish the cause of a lock-client crash.
+
+The bar's caffeine button (`waybar/scripts/caffeine.sh`) runs
+`caffeine-idle.service`, a transient user unit holding a logind `idle`
+inhibitor. hypridle honors it even when the bar is hidden (fullscreen), so the
+screen does not dim, lock or turn off. It does not block `systemctl suspend`.
+
 ## Display layout
 
 `Meta+I` → **Displays**: drag screens above, below or beside each other. Nearby

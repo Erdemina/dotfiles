@@ -6,6 +6,7 @@
     "layer": "top",
 
     "position": "top",
+    "output": ["eDP-1"],
 
     //"height": 20,
 
@@ -47,7 +48,7 @@
     },
     "group/pwr": {
         "orientation": "horizontal",
-        "modules": ["battery", "custom/powerprofile", "idle_inhibitor"]
+        "modules": ["battery", "custom/powerprofile", "image#touchpad", "custom/caffeine"]
     },
 
 
@@ -135,15 +136,12 @@
         "on-scroll-down": "brightnessctl s 5%-",
         "on-scroll-up": "brightnessctl s +5%"
     },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "󰅶",
-            "deactivated": "󰾪"
-        },
-        "tooltip": true,
-        "tooltip-format-activated": "Caffeine ON — screen will not lock or sleep\nClick: turn off",
-        "tooltip-format-deactivated": "Caffeine OFF — normal idle/lock\nClick: keep awake"
+    "custom/caffeine": {
+        "exec": "~/.config/waybar/scripts/caffeine.sh",
+        "return-type": "json",
+        "interval": "once",
+        "signal": 10,
+        "on-click": "~/.config/waybar/scripts/caffeine.sh toggle >/dev/null"
     },
     "custom/weather": {
         "tooltip-format": "Weather (Istanbul, wttr.in)\nClick: open forecast in browser",
@@ -170,6 +168,14 @@
         "escape": true
     },
 
+    "image#touchpad": {
+        "exec": "~/.config/hypr/scripts/touchpad.sh status",
+        "return-type": "json",
+        "size": 15,
+        "interval": 3600,
+        "signal": 9,
+        "on-click": "~/.config/hypr/scripts/touchpad.sh"
+    },
     "custom/powerprofile": {
         "format": "{}",
         "exec": "~/.config/hypr/scripts/powerprofile.sh status",
@@ -230,18 +236,10 @@
         "return-type": "json",
         "format": "{}",
         "tooltip": true,
-        "on-click": "hyprctl eval 'focus_workspace(\"e+1\")'",
-        "on-click-right": "hyprctl eval 'focus_workspace(\"e-1\")'",
-        "on-scroll-up": "hyprctl eval 'focus_workspace(\"e-1\")'",
-        "on-scroll-down": "hyprctl eval 'focus_workspace(\"e+1\")'"
-    },
-    "hyprland/workspaces": {
-        "on-click": "activate",
-        "tooltip": false,
-        "format": "{id}",
-        "all-outputs": true,
-        "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
-        "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'"
+        "on-click": "hyprctl eval 'step_workspace_pair(1)'",
+        "on-click-right": "hyprctl eval 'step_workspace_pair(-1)'",
+        "on-scroll-up": "hyprctl eval 'step_workspace_pair(-1)'",
+        "on-scroll-down": "hyprctl eval 'step_workspace_pair(1)'"
     },
 
     "pulseaudio": {

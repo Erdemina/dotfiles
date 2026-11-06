@@ -56,6 +56,7 @@ items=(
     "󰂵  Blur: $(onoff "$(luaflag blur)")"
     "󰑮  Animations: $(onoff "$(luaflag animations)")"
     "󰌌  Keyboard layout"
+    "󰟸  Touchpad: $(grep -F -- '-- touchpad.sh' "$H/input.lua" | grep -q 'enabled = false' && echo off || echo on)"
     "󰓅  Power profile"
     "󰌌  Show keybindings"
     "󰕾  Audio (pavucontrol)"
@@ -126,6 +127,7 @@ case "$choice" in
         sed -i -E "s|(kb_layout\s*=\s*)\"[a-z,]*\"|\1\"$l\"|" "$H/input.lua"
         notify "Keyboard layout: $l" ;;
 
+    *Touchpad*) "$S/touchpad.sh" ;;
     *"Power profile"*) "$S/powerprofile.sh" ;;
     *Displays*) "$S/display-settings.py"; exit 0 ;;
 

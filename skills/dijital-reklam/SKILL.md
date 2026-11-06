@@ -23,8 +23,9 @@ Meta MCP auth: connected as Erdem Ulutaş's personal Facebook user (normal; Meta
 ## Known assets (verify, may be stale — checked 2026-11-07)
 - Agara Ajans Facebook page `1395368806994583`.
 - Ad account `38910131548630571` (TRY, no payment method yet, not inside any Business portfolio).
-- Two Business portfolios both named "Agara Ajans", both unverified, no ad accounts: `1129570899397320` (created by Erdem 3 Oct 2026; the one recorded as the agency Business) and `1727452101693798` (created 25 Sep 2026; owns the page). Consolidation is Erdem's decision; moving an ad account into a Business is irreversible.
+- Two Business portfolios both named "Agara Ajans", both unverified, no ad accounts: `1129570899397320` (B, created by Erdem 3 Oct 2026; **owns Meta app "Agara Ajans Reklam" `1855093689003066`** used by the Agara Reklam panel) and `1727452101693798` (A, created 25 Sep 2026 by the page; **owns the page**). Do NOT delete B while it owns the app; deleting breaks the panel's Meta login. Merge decision pending. Moving an ad account into a Business is irreversible.
 - Client assets: client shares ad account + page to the agency Business as partner; card stays on the client's account.
+- Chrome via omp relay is available for UI-only steps (see `~/erdem-memory/machine.md`).
 
 ## Standard workflow
 1. **Brief:** client, goal (lead/message/sale/traffic), offer, region, budget, duration, creative from Erdem. Ask only for what's missing.

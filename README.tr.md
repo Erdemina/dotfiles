@@ -76,6 +76,19 @@ CachyOS veya Arch, KDE Plasma 6 kurulu, Wayland. Hyprland ≥ 0.55 (Lua config).
 
 `hyprctl binds` hepsini açıklamalarıyla listeler.
 
+Kilit komutları `systemd-cat` ile çalışır. Hyprlock çıktısı için
+`journalctl --user -t hyprlock -b` kullan. Önceki açılış için `-b -1` kullan.
+Hypridle, uyku öncesinde kilidin hazır olmasını `inhibit_sleep = 3` ile bekler.
+Hypridle, kilit ekranının kısa süre görünmesini önlemek için önce ekranları kapatır.
+Ekran kapatma komutu başarısız olsa da kilitleme isteğini gönderir.
+Uyanınca ekranları açar. Uyku öncesinde kilidin hazır olmasını beklemeye devam eder.
+Bu ayar ve günlük kaydı, kilit uygulamasının çökme nedenini tek başına kanıtlamaz.
+
+Bardaki caffeine düğmesi (`waybar/scripts/caffeine.sh`) `caffeine-idle.service`
+geçici kullanıcı birimini çalıştırır. Birim logind `idle` engeli tutar. Bar
+gizliyken de (tam ekran) hypridle bu engele uyar: ekran kararmaz, kilitlenmez,
+kapanmaz. Birim `systemctl suspend` komutunu engellemez.
+
 ## Ekran düzeni
 
 `Meta+I` → **Displays**: ekranları fareyle sürükleyip üste, alta veya yana yerleştir.

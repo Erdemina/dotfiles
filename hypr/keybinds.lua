@@ -10,7 +10,7 @@ local scripts  = os.getenv("HOME") .. "/.config/hypr/scripts"
 local terminal    = "ghostty"
 local fileManager = "dolphin"
 local launcher    = "rofi -show drun"
-local lock        = "hyprlock"
+local lock        = "systemd-cat -t hyprlock hyprlock --immediate-render --no-fade-in"
 local powermenu   = scripts .. "/powermenu.sh"
 
 -- ── Uygulamalar ─────────────────────────────────────────────────────────
