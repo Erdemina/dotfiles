@@ -25,7 +25,7 @@ Meta MCP auth: connected as Erdem Ulutaş's personal Facebook user (normal; Meta
 - Ad account `38910131548630571` (TRY, no payment method yet, not inside any Business portfolio).
 - Two Business portfolios both named "Agara Ajans", both unverified, no ad accounts. Decision 2026-11-07: keep both, move nothing, delete nothing.
   - A `1727452101693798`: owns the page (page is linked to IG `@agaraajans` `17841417308591682`; Meta blocks removing an IG-linked page from a Business). Give clients A's ID for sharing assets.
-  - B `1129570899397320`: owns Meta app "Agara Ajans Reklam" `1855093689003066`; the Agara Reklam panel's selected `meta_business` is B. Never delete B. When the first client shares to A, switch the panel's Meta business to A (`ads_set_meta_business`) with Erdem's approval, or clients' assets won't sync.
+  - B `1129570899397320` (renamed "Agara Ajans - Uygulama" 2026-11-07; app ownership transfer to A fails with "unexpected technical issue"): owns Meta app "Agara Ajans Reklam" `1855093689003066`; the Agara Reklam panel's selected `meta_business` is B. Never delete B. When the first client shares to A, switch the panel's Meta business to A (`ads_set_meta_business`) with Erdem's approval, or clients' assets won't sync.
 - Client assets: client shares ad account + page to the agency Business as partner; card stays on the client's account.
 - Chrome via omp relay is available for UI-only steps (see `~/erdem-memory/machine.md`).
 
