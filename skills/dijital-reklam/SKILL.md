@@ -51,6 +51,7 @@ Meta MCP auth: connected as Erdem Ulutaş's personal Facebook user (normal; Meta
 - Real estate → special ad category check (`meta.md` §7). Discount claims → 30-day lowest-price rule; "en ucuz/1 numara" needs proof; influencer → "Reklam/Tanıtım" label.
 - Tracking needs KVKK cookie opt-in on client sites; commercial SMS/WhatsApp/e-mail needs İYS consent.
 - Budget math includes the Türkiye 5% Meta location fee (from 1 Jul 2026, billed separately) and taxes; tell the client.
+- Instagram poll sticker in ads (Stories/Reels): Meta gives counts only; Instagram does not share poll votes with apps, so no automatic DM to voters ([Chatfuel](https://chatfuel.com/blog/instagram-polls-guide)). DMing people who only viewed an ad is impossible and against policy. Use: poll for engagement + click-to-Instagram-Direct button → Page auto DM; or ice breakers in DM as the "poll" (answers arrive as messages).
 - Lead forms (Instant Forms) are not creatable via Meta MCP → Ads Manager by hand or Chrome.
 
 ## Known panel gaps (Agara Reklam)
