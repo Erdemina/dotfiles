@@ -24,7 +24,7 @@ Meta MCP auth: connected as Erdem Ulutaş's personal Facebook user (normal; Meta
 - Agara Ajans Facebook page `1395368806994583`.
 - Ad account `38910131548630571` (TRY, no payment method yet, not inside any Business portfolio).
 - Business portfolio: **Agara Ajans `1727452101693798`** — the only agency Business. Owns the page (IG `@agaraajans` `17841417308591682`) and the panel's Meta app **"Agara Reklam" `1853939885788684`** (created 2026-11-07; use cases: Marketing API ads, measure, leads, Instagram; redirect `https://reklam.agarajans.com/reklam/oauth/meta`; creds in VDS `~/agarajans_root/websites/agara-reklam/.env`). Panel `meta_business` = A. Clients share assets to this ID.
-- Legacy, to delete: Business "Agara Ajans - Uygulama" `1129570899397320` and old app "Agara Ajans Reklam" `1855093689003066` (no longer used by the panel).
+- Deleted 2026-11-07: old app `1855093689003066` (removed) and Business `1129570899397320` (scheduled, final after 24 h). Do not reuse these IDs.
 - Client assets: client shares ad account + page to the agency Business as partner; card stays on the client's account.
 - Chrome via omp relay is available for UI-only steps (see `~/erdem-memory/machine.md`).
 
