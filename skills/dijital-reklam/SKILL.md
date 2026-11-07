@@ -29,12 +29,14 @@ Meta MCP auth: connected as Erdem Ulutaş's personal Facebook user (normal; Meta
 - Chrome via omp relay is available for UI-only steps (see `~/erdem-memory/machine.md`), only while Erdem's PC and Chrome are open. Never design anything that needs the PC to stay on: unattended work must live on Meta (automations, message templates) or the VDS panel (hourly sync, alerts, caps, portal).
 
 ## New client onboarding (once per client)
-1. Panel (Chrome, `reklam.agarajans.com`): create the workspace (İşletmeler > yeni; sector template), currency TRY.
-2. Workspace > Ayarlar: open portal sections (recommended `overview, ads, requests, goals`, plus `leads/pipeline` if CRM used); add the client's admin user as `client_admin` (needs client e-mail); "Önizle" to check, then send the temp password.
+1. Agara MCP `create_workspace` (template: genel, insaat-yapi, restoran, emlak, otomotiv, guzellik).
+2. `portal_settings` (recommended `overview, ads, requests, goals`, plus `leads/pipeline` if CRM used); `create_client_user` (client e-mail; returns temp password once — give it to Erdem, never store it). Optional panel "Önizle" in Chrome.
 3. Send the client `https://reklam.agarajans.com/portal/meta-baglanti` (staff view: `/isletmeler/:id/meta-baglanti`; MCP `client_meta_setup`). Client shares ad account (full control) + page + IG to agency Business `1727452101693798`, adds card, optional account spend limit, then clicks "Kontrol et" (or staff runs MCP `client_meta_check`). Panel links the account and notifies managers.
-4. Set the monthly cap in the panel (workspace > Reklamlar > aylık tavan; no MCP tool) from the client's budget; set KPI goals with MCP `set_goals`.
+4. `set_monthly_cap` (needs Erdem's approval; mirror=true writes a Meta spend limit) and `set_goals`.
 5. Meta MCP now sees the client account (assigned to Erdem by the hourly business sync); verify with `ads_get_ad_accounts`.
 6. First campaign: workflow below. First real campaign doubles as the test of image creative + messaging welcome/ice-breakers via Meta MCP (not yet verified).
+
+Chrome-only steps (PC must be on during the session): client Page auto DM / ice breakers, Instant Forms, per-ad message templates. Everything else is MCP.
 
 ## Standard workflow
 1. **Brief:** client, goal (lead/message/sale/traffic), offer, region, budget, duration, creative from Erdem. Ask only for what's missing.
