@@ -39,7 +39,7 @@ Meta MCP auth: connected as Erdem Ulutaş's personal Facebook user (normal; Meta
 ## Standard workflow
 1. **Brief:** client, goal (lead/message/sale/traffic), offer, region, budget, duration, creative from Erdem. Ask only for what's missing.
 2. **Research:** sector, region, competitors (web search, Meta Ad Library). Set target CPL from the budget worksheet.
-3. **Plan:** objective, one campaign, few ad sets, Advantage+ audience by default, 2–4 copy variants. For messaging ads: welcome message + up to 4 ice-breaker options and a reply per option.
+3. **Plan:** objective, one campaign, few ad sets, Advantage+ audience by default, 2–4 copy variants. For messaging ads (Erdem's choice 2026-11-07): no per-option survey; one automatic DM. Meta MCP creatives use the Page's default greeting, so set the client Page's automatic message once (Business Suite > Gelen kutusu > Otomasyonlar > Anlık yanıt, Messenger + Instagram; via Chrome during onboarding). It runs on Meta, PC not needed, and also answers organic DMs — word it for both.
 4. **Agara Reklam:** draft (`ads_create_draft`) → checks (`ads_get_draft`) → client approval link (`ads_send_for_approval`).
 5. **Meta MCP:** create everything **PAUSED**; upload creative; show preview (`ads_get_ad_preview`).
 6. **Publish only on Erdem's explicit "yayına al"**. Same for budget/status changes on live campaigns. Never enter payment data.
